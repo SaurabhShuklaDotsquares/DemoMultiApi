@@ -1,0 +1,47 @@
+﻿@model BannerViewModels
+@{
+    var headerModel = new ModalHeader { Heading = " Banner" };
+}
+<div class="container-fluid">
+    <partial name="_ModalHeader" model="headerModel" />
+    <section class="content">
+        <div class="box">
+            <div class="modal-body box-body">
+                <p>Here you can view Banner detail</p>
+                <div id="validation-summary"></div>
+                <div class="form-group row">
+                    <table class="table table-hover table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Title</th>
+                                <td>@Model.Title</td>
+                            </tr>
+                            <tr>
+                                <th>Sub Title</th>
+                                <td>@Model.Subtitle</td>
+                            </tr>
+                            <tr>
+                                <th>Type</th>
+                                <td>@Model.Typ</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>@Model.Stats</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <img src="~/Uploads/@Model.Image" class="rounded-circle" height="100" width="100" asp-append-version="true" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                   
+                </div>
+                <div class="pull-right padding-15">
+                    <button data-dismiss="modal" class="btn btn-info mr-1" type="button">Cancel</button>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+</div>

@@ -1,0 +1,17 @@
+Id,Order Id,First Name,Last Name,Mobile,Email,Status,Billing Address,Shipping Address,Shipping Type,Message,Payment Method,Transaction Id,Created_at,Updated_at
+111,10261-1684155918-LDONZEW,shubham,sisodia,811883752,,processing,",rajasthan,145236,jaipur,india",",rajasthan,145236,jaipur,india",home,,online,tok_1N81AGLN6Zr869p3xAbQriVl,15-05-2023 18:35:28,15-05-2023 18:35:29
+113,10263-1684156193-CQRKEHX,shubham,sisodia,811883752,,processing,",rajasthan,145236,jaipur,india",",rajasthan,145236,jaipur,india",home,,online,tok_1N81AGLN6Zr869p3xAbQriVl,15-05-2023 18:40:06,15-05-2023 18:40:06
+114,10264-1684156276-KWROUPO,shubham,sisodia,811883752,,processing,",rajasthan,145236,jaipur,india",",rajasthan,145236,jaipur,india",home,,online,tok_1N81H6LN6Zr869p3x1VD5pW2,15-05-2023 18:41:17,15-05-2023 18:41:17
+115,10265-1684156422-SAOWZHR,shubham,sisodia,811883752,,processing,",rajasthan,145236,jaipur,india",",rajasthan,145236,jaipur,india",home,,online,tok_1N81JgLN6Zr869p3lNCPLNmt,15-05-2023 18:43:42,15-05-2023 18:43:42
+116,10266-1684156811-PSFMNUH,shubham,sisodia,811883752,,processing,",rajasthan,145236,jaipur,india",",rajasthan,145236,jaipur,india",home,,online,ch_3N81QRLN6Zr869p30hr1hqdl,15-05-2023 18:50:11,15-05-2023 18:50:11
+117,10267-1684158096-EBWIBKL,shubham,sharma,811883752,,processing,",r,521463,j,101",",r,145236,j,101",home,,online,tok_1N81d8LN6Zr869p38CM4vhYc,15-05-2023 19:11:36,15-05-2023 19:11:36
+118,10268-1684157970-WTJRTOJ,prashant,pal,811883752,,processing,",jaipur,145236,jaipur,india",",jaipur,145236,jaipur,india",home,,online,ch_3N81j9LN6Zr869p31zVUyYEu,15-05-2023 19:09:32,15-05-2023 19:09:32
+131,10281-1684998086-QYLTVWH,Test,user,8855996654,,processing,",R,302020,J,101",",R,302020,J,101",,,online,tok_1NBYArLN6Zr869p3IJGSI7I7,25-05-2023 12:31:26,25-05-2023 12:31:26
+132,10282-1684998136-PSXISOI,Test,user,8855996654,,processing,",R,302020,J,101",",R,302020,J,101",,,online,tok_1NBYBfLN6Zr869p37aIZU6Gv,25-05-2023 12:32:16,25-05-2023 12:32:16
+134,10284-1685007495-HYPQEEQ,Test,user,8855996654,,processing,",R,302020,J,101",",R,302020,J,101",,,online,tok_1NBaccLN6Zr869p3m7F3PzL1,25-05-2023 15:08:15,25-05-2023 15:08:15
+135,10285-1685083157-NAJOLGB,Sunil,Kumar,9856078968,,processing,",H,302004,J,101",",H,302004,J,101",,,online,tok_1NBuIyLN6Zr869p3weZ3IePF,26-05-2023 12:09:17,26-05-2023 12:09:17
+143,10287-1685097991-NOWNWHS,Mahendra,Singh,8209125776,,processing,",R,302004,J,101",",R,302004,J,101",,,online,tok_1NByAELN6Zr869p3MtuJA1Ax,26-05-2023 16:16:31,26-05-2023 16:16:31
+144,10288-1685098654-CNBGQKW,Mahendra,Singh,8209125776,,processing,",R,302004,J,101",",R,302004,J,101",,,online,tok_1NByKwLN6Zr869p3rK87C1bG,26-05-2023 16:27:34,26-05-2023 16:27:34
+179,10298-1685365472-AGWAELX,Test,user,546546545,,processing,",f,222111,d,101",",f,222111,d,101",,,online,tok_1ND5kSLN6Zr869p33mloq3JQ,29-05-2023 18:34:32,29-05-2023 18:34:32
+185,10299-1685449089-CLWGBIE,shubham,singh,7734033758,,processing,",string,0,string,0",",Rajasthan,145236,Jaipur,111",Home,,Online,ch_3NDRcZLN6Zr869p31iBMGqbq,30-05-2023 17:48:12,30-05-2023 17:48:12
+186,10300-1685450941-DSLCSHN,Shubham,Singh,8118837529,,processing,",Rajasthan,145236,Jaipur,101",",Rajasthan,145236,Jaipur,101",,,online,ch_3NDRyzLN6Zr869p31Tuzmhfc,30-05-2023 18:19:01,30-05-2023 18:19:01

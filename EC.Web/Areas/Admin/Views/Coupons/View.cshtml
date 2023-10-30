@@ -1,0 +1,89 @@
+﻿@model CouponsViewModels
+
+<div class="page-wrapper width">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center padding-25">
+                <h4 class="page-title">Manage Coupon</h4>
+                <h6>Here you can view Coupon detail</h6>
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","dashboard")">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","Coupons")">Coupon Manager</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content" data-table="emailHooks">
+        <div class="box">
+            <div class="box-body">
+                <table class="table table-hover table-striped">
+                    <tr>
+                        <th scope="row">Code</th>
+                        <td>@Model.Code</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Type</th>
+                        <td>
+                            @Model.Type
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Value</th>
+                        <td>
+                            @Model.MaximumValue1
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Minimum Purchase Requirement</th>
+                        @if (Model.MaximumValue != "0")
+                        {
+                            <td>
+                                @Model.MaximumValue (Cart Value Requirement)
+                            </td>
+                         }else
+                             {
+                        <td>
+                                No Minimum Purchase Requirement
+                        </td>
+                             }
+                    </tr>
+                    <tr>
+                        <th scope="row">Usage Limits</th>
+                        @if (Model.MaximumUsage!=0)
+                        {
+                         <td>
+                            @Model.MaximumUsage
+                        </td>
+                        }else
+                        {
+                        <td>
+                                No Usage Limit
+                        </td>
+                        }
+                    </tr>
+                    <tr>
+                        <th scope="row">Date Limits</th>
+                        <td>
+                            @Model.DateLimits
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="box-footer ml-1">
+                <a href="@Url.Action("Index","Coupons")" class="btn btn-warning btn-flat pull-right mr-lg-3" title="Back"><i class="fa fa-fw fa-chevron-circle-left"></i> Back</a>
+            </div>
+        </div>
+    </section>
+</div>

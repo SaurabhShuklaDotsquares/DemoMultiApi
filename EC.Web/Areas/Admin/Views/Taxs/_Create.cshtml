@@ -1,0 +1,91 @@
+﻿@model TaxsViewModels
+@using EC.Core
+@{
+    var headerModel = new ModalHeader { Heading = String.Format("{0} Tax", @Model.Id == 0 ? "Add" : "Edit") };
+}
+<style>
+    .select2-container--classic.select2-container--open .select2-selection--multiple {
+        overflow-x: hidden !important;
+    }
+
+    .select2-container--classic .select2-selection--multiple {
+        overflow-x: hidden;
+    }
+
+</style>
+<div class="page-wrapper">
+    <div class="" id="frm-add-edit-Tax">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <partial name="_ModalHeader" model="headerModel"/>
+                    <partial name="_Notification"/>
+                    <div class="card-body">
+                        <form method="POST" action="@Url.Action("Create","Taxs")" accept-charset="UTF-8" id="taxform">
+                            <input type="hidden" asp-for="hdnSubCategoryId" />
+                            <div class="form-group">
+                                <label for="parent">Title<span class="text-danger">*</span></label>
+                                <input type="text" title="Enter the Title." placeholder="Maximum 30 Character" asp-for="Title" class="form-control" maxlength="30" />
+                                <span asp-validation-for="Title" class="field-validation-error"> </span>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="parent">Category<span class="text-danger">*</span></label>
+                                @Html.DropDownListFor(model => model.CategoryId, Model.TitleList,"Select Category..", new { @class = "form-control" })
+                                <span asp-validation-for="CategoryId" class="field-validation-error text-danger errorCategory"> </span>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="parent">Select Sub Category</label>
+                                <select asp-for="SubCategoryId" asp-items="Model.SubCategoryList" class="form-control" multiple="multiple" maxlength="30">Select SubCategory</select>
+                                <span asp-validation-for="SubCategoryId" class="field-validation-error errorSubcategory"> </span>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="parent">Value<span class="text-danger">*</span></label>
+                                <input type="text" title="Enter the Valuse." placeholder="Value less than or equal to 100 %" asp-for="Value" oninput="this.value = this.value.replace(/[^0-9]/g,'').replace(/(\..*)\./g, '$1');" min="1" class="form-control" id="value" maxlength="10" onkeyup="check_value()"/>                             
+                                <span asp-validation-for="Value" class="field-validation-error" style="color: #cc0000;" id="errormsg"> </span>
+                               
+                                @*<input class="form-control" placeholder="Value in %" name="value" type="number">*@
+                            </div>
+                            <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" asp-for="Status" class="switchBox switch-small"></label>
+                                    <div class="col-sm-10">
+                                        <label class="switch">
+                                           <input type="checkbox" asp-for="Status" class="form-checkbox" />
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                              </div>
+                            <partial name="_ModalFooter" model="new ModalFooter { }" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function check_value() {       
+        var price = parseFloat($('#value').val());
+        if (price > 100) {
+            $('#value').val('');
+            $('#errormsg').html('Enter a value less than or equal to 100.')
+            $('#errormsg').show();
+         }
+         else{
+            //$('#errormsg').html('');
+            if(price <= 0){
+                $('#value').val('');
+                $('#errormsg').html('Enter a value less than or equal to 100.')
+                $('#errormsg').show();
+            }
+            else{
+                $('#errormsg').hide();
+            }
+            //$('#errormsg').hide();
+         }
+        //$('#errormsg').show();
+    }
+
+</script>

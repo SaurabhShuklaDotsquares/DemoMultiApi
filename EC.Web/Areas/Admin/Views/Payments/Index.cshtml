@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Payment Manager";
+}
+@section styles{
+    <link href="~/lib/alertifyjs/css/alertify.css" rel="stylesheet" />
+    <link href="~/lib/alertifyjs/css/themes/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/DataTables-1.10.20/css/dataTables.bootstrap4.min.css" />
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Payment Manager</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-action="index" asp-controller="dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Payment Manager</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+   @* <partial name="_Notification" />*@
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body table-responsive">
+                    <table id="grid-Payment" class="table table-bordered table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Id</th>                                   @*[0]*@
+                                <th width="2%">#</th>                        @* [1]*@
+                                <th>Order ID</th>                            @* [2]*@
+                                <th>Pay Amount</th>                          @* [3]*@
+                                <th>Transaction Id</th>                      @* [4]*@
+                                <th>Payment Status</th>                      @* [5]*@
+                                <th width="1%">Active Status</th>                       @* [6]*@
+                                <th>Created At</th>                          @* [7]*@
+                                <th>Updated At</th>                          @* [8]*@
+                                <th>Action</th>                              @* [9]*@
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot></tfoot>   
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('[data-tooltip="tooltip"]').tooltip();
+        });
+    </script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap-switch.js"></script>
+    <script src="~/lib/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/js/view/admin/payments/index.js"></script>
+}
+
+
+

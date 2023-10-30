@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Coupon Manager";
+}
+@section styles{
+    <link href="~/lib/alertifyjs/css/alertify.css" rel="stylesheet" />
+    <link href="~/lib/alertifyjs/css/themes/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/DataTables-1.10.20/css/dataTables.bootstrap4.min.css" />
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>
+                    Coupon Manager
+                </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-action="index" asp-controller="dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Coupon Manager</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+     <partial name="_Notification" />
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-tools">
+                        <a  data-tooltip="tooltip" title="Add New Coupons" href="@Url.Action("Create","Coupons")" class="btn btn-success btn-sm pull-right">
+                    <i class="fa fa-plus"></i> Add New
+                    </a>
+                    </div>
+                </div>
+                <div class="card-body table-responsive">
+                    <table id="grid-Coupons" class="table table-bordered table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Id</th>                                    @*[0]*@
+                                <th width="2%">#</th>                          @*[1]*@
+                                <th>Code</th>                                  @*[2]*@
+                                <th>Type</th>                                  @*[3]*@
+                                <th>Value</th>                                 @*[4]*@
+                                <th>Status</th>                                @*[5]*@
+                                <th>Created At</th>                            @*[6]*@
+                                <th>Start Date - End Date</th>                            @*[7]*@
+                                <th>Action</th>                                @*[8]*@
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot></tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@{
+
+    var deleteModel = new Modal { ID = "modal-delete-Coupons", AreaLabeledId = "modal-action-delete-label", Size = ModalSize.Medium };
+    //var addModel = new Modal { ID = "modal-add-Coupons", AreaLabeledId = "modal-action-add-label", Size = ModalSize.Medium };
+}
+<partial name="_Modal" model="deleteModel" />
+@*<partial name="_Modal" model="addModel" />*@
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('[data-tooltip="tooltip"]').tooltip();
+        });
+    </script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap-switch.js"></script>
+    <script src="~/lib/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/js/view/admin/coupons/index.js"></script>
+}
+
+
+
+

@@ -1,0 +1,72 @@
+﻿@model AttributeViewModel
+@{
+    var headerModel = new ModalHeader { Heading = " Attribute Manager" };
+}
+<div id="frm-add-edit-category-add-view-category">
+    <partial name="_ModalHeader" model="headerModel" />
+    <div class="modal-body box-body">
+        <p>Here you can view Attribute detail</p>
+        <div id="validation-summary"></div>
+        <div class="form-group row">
+            <table class="table table-hover table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">Attribute Title</th>
+                        <td>@Model.Title</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status</th>
+                        @{
+                            @if (Model.Status == true)
+                            {
+                                <td>Active</td>
+                            }
+                            else
+                            {
+                                <td>InActive</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <th scope="row">Created</th>
+                        <td>@Model.CreatedAt</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Modified</th>
+                        <td>@Model.UpdatedAt</td>
+                    </tr>
+                </tbody>
+            </table>
+                <table class="table table-striped table-bordered table-hover m-1">
+                    <thead class="bg-cyan">
+                        <tr>
+                            <th>Value Title</th>
+                            <th>Sort Order</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var value_row = 0;
+                            @foreach (var item in Model.OptionValuesList)
+                            {
+                                <tr>
+                                    <td>@item.title</td>
+                                    <td>@item.sortorder</td>
+                                </tr>
+                                value_row++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            
+        </div>
+        <div class="pull-right padding-15">
+            <button data-dismiss="modal" class="btn btn-info mr-1" type="button">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+

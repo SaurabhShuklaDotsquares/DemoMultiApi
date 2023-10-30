@@ -1,0 +1,175 @@
+﻿@model UserManagerViewModel
+@using EC.Core
+@{
+    var headerModel = new ModalHeader { Heading = String.Format("{0} User", @Model.Id == 0 ? "Add" : "Edit") };
+}
+
+<div id="frm-add-edit-users">
+    <form asp-action="CreateEdit" asp-controller="usermanager" novalidate="novalidate">
+        <partial name="_ModalHeader" model="headerModel" />
+        <input type="hidden" asp-for="Id" />
+        <div id="validation-summary" class="alert-danger"></div>
+        <div class="modal-body box-body">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" asp-for="Firstname">First Name<span class="text-danger">*</span></label>
+                <div class="col-sm-9">
+                    <input type="text" title="Enter the First Name." asp-for="Firstname" class="form-control"   />
+                    <span asp-validation-for="Firstname" class="field-validation-error"> </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" asp-for="Lastname">Last Name<span class="text-danger">*</span></label>
+                <div class="col-sm-9">
+                    <input type="text" title="Enter the Last Name." asp-for="Lastname" class="form-control" />
+                    <span asp-validation-for="Lastname" class="field-validation-error"> </span>
+                </div>
+            </div>
+           @* <div class="form-group row">
+                <label class="col-sm-3 col-form-label" asp-for="Gender">Gender<span class="text-danger">*</span></label>
+                <div class="col-sm-9">
+                    <label>
+                        <input type="radio" asp-for="Gender" value="@((int)EC.Core.LIBS.GenderEnum.Male)" /> Male
+                    </label>&nbsp;
+                    <label>
+                        <input type="radio" asp-for="Gender" value="@((int)EC.Core.LIBS.GenderEnum.Female)" /> Female
+                    </label>
+                    <span asp-validation-for="Gender" class="field-validation-error"> </span>
+                </div>
+            </div>*@
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" asp-for="Mobile">Mobile<span class="text-danger">*</span></label>
+                <div class="col-sm-9">
+                    <input type="text" title="Please fill 9-16 digit Mobile Number" asp-for="Mobile" class="form-control"  minlength="9" maxlength="16" id="mobile" />
+                    <span asp-validation-for="Mobile" class="field-validation-error"> </span>
+                </div>
+            </div>
+            @{
+                if (Model.Id != 0)
+                {
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="Email"></label>
+                        <div class="col-sm-9">
+                            <input type="text" title="" asp-for="Email" readonly class="form-control" />
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="Email">Email<span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <input type="email" id="txtEmail" title="" asp-for="Email" class="form-control" onkeyup="ClearMessage()" />
+                            <span id="message"></span>
+                            <span asp-validation-for="Email" class="field-validation-error1"> </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="Password">Password<span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                              
+                                <input type="password" title="Enter the Password." id="myInput" asp-for="Password" class="form-control" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fa fa-fw fa-eye field_icon" id="spn" onclick="myFunction()"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span asp-validation-for="Password" class="field-validation-error"> </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="ConfirmPassword">Confirm Password<span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                         <div class="input-group">
+                                <input type="password" asp-for="ConfirmPassword" class="form-control" id="myInput1" />
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                        <span class="fa fa-fw fa-eye  field_icon"  id="spn1" onclick="myFunctionConfrm()"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span asp-validation-for="ConfirmPassword" class="field-validation-error"> </span>
+                         </div>
+                       
+                    </div>
+                }
+            }
+
+        </div>
+        <partial name="_ModalFooter" model="new ModalFooter { }" />
+    </form>
+</div>
+
+
+<script>
+        $('#txtEmail').change(function () {
+           
+        var email = $("#txtEmail").val();
+        $.ajax({
+            type: "POST",
+            url: "usermanager/AjaxMethod",
+            data: {
+                email: email
+            },
+            success: function (response) {
+                var message = $("#message");
+                if (response==true) {
+                    //Email available.
+                    message.css("color", "red");
+                    message.html("This email is already exists, please try another one.");
+                    return false;
+                }
+            }
+          });
+     });
+    function ClearMessage() {
+        $("#message").html("");
+    };
+   
+</script>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+      
+        if (x.type === "password")
+        {
+            x.type = "text";
+            $('#spn').toggleClass("fa-eye-slash");
+        } 
+        else
+        {
+            x.type = "password";
+            $('#spn').toggleClass("fa-eye");
+        }
+    }
+</script>
+
+<script>
+   
+        $('#mobile').bind('keypress', function (event) {
+            var regex = new RegExp("^[0-9]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+            }
+        });
+
+
+    function myFunctionConfrm() {
+        var x = document.getElementById("myInput1");
+        if (x.type === "password")
+        {
+            x.type = "text";
+            $('#spn1').toggleClass("fa-eye-slash");
+        } 
+        else
+        {
+            x.type = "password";
+            $('#spn1').toggleClass("fa-eye");
+        }
+    }
+
+    </script>

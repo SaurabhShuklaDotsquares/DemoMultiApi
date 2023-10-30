@@ -1,0 +1,64 @@
+﻿@model BrandsViewModel
+@using EC.Core
+@{
+    var headerModel = new ModalHeader { Heading = String.Format("{0} Brand", @Model.Id == 0 ? "Add" : "Edit") };
+}
+<div id="frm-add-edit-brand">
+    <form enctype="multipart/form-data" asp-action="CreateEdit" asp-controller="Brands">
+        <partial name="_ModalHeader" model="headerModel" />
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="Image" />
+        <div id="validation-summary" class="alert-danger"></div>
+        <div class="modal-body box-body">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Title">Title<span class="text-danger">*</span></label>
+                <div class="col-sm-10">
+                    <input type="text" title="Enter the Title." asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="field-validation-error"> </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Status" class="switchBox switch-small"></label>
+                <div class="col-sm-10">
+                    <label class="switch">
+                        <input type="checkbox" asp-for="Status" class="form-checkbox" />
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="IsFeatured" class="switchBox switch-small"></label>
+                <div class="col-sm-10">
+                    <label class="switch">
+                        <input type="checkbox" asp-for="IsFeatured" class="form-checkbox" />
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+                <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="BrandPicture">Image<span class="text-danger">*</span></label>
+                    <div class="col-sm-10">
+                        <input asp-for="BrandPicture" class="custom-file-input" id="yourElem">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                        <span asp-validation-for="BrandPicture" class="field-validation-error"> </span>
+                        <p id="lblError" class="field-validation-error"></p>
+                    </div>
+                </div>
+             @if (Model.Id > 0)
+            {
+                <img src="~/Uploads/@Model.Image" class="rounded-circle" height="100" width="100" asp-append-version="true" id="view_logoUrlfile" />
+            }
+            else
+            {
+                <img class="rounded-circle" height="100" width="100" asp-append-version="true" id="view_logoUrlfile" style="display:none;" />
+            }
+        </div>
+        <partial name="_ModalFooter" model="new ModalFooter { }" />
+    </form>
+</div>
+<script src="~/js/global.js"></script>
+<script>
+    $("#yourElem").change(function () {
+        Global.ValidateImage(this, 'yourElem', 'view_logoUrlfile', 'lblError');
+    });
+</script>

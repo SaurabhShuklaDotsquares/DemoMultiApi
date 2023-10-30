@@ -1,0 +1,142 @@
+﻿@model PagesViewModels
+
+@section styles{
+    <link href="~/css/admin/Style.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
+
+}
+@{
+    var headerModel = new ModalHeader { Heading = String.Format("{0} User", @Model.Id == 0 ? "Create" : "Create") };
+}
+@*<style>
+    label {
+        display: block;
+        margin-top: 1em;
+    }
+
+    textarea:valid {
+        background-color: palegreen;
+    }
+</style>*@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Manage Pages</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-action="index" asp-controller="dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a asp-action="index" asp-controller="Pages">Manage Pages</a></li>
+                    <li class="breadcrumb-item active">Pages</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<div class="container-fluid" id="frm-add-edit-product">
+    <form method="POST" asp-action="CreatePages" asp-controller="Pages" id="cmsFrom">
+        <input type="hidden" asp-for="Id" />
+        <div id="validation-summary" class="alert-danger"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="title">Select Title<span class="text-danger">*</span></label>
+                                        <input type="text"  asp-for="Title" class="form-control" />
+                                        <span asp-validation-for="Title" class="field-validation-error titleExist"> </span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="title">Sub Title</label>
+                                        <input type="text" title="Title" asp-for="SubTitle" class="form-control" />
+                                        <span asp-validation-for="SubTitle" class="field-validation-error"> </span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="description">Short Description</label>
+                                        <textarea asp-for="ShortDescription" title="ShortDescription" class="form-control" placeholder="Enter..."></textarea>
+                                        <span asp-validation-for="ShortDescription" class="field-validation-error"> </span>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group required">
+                                        <label for="title">Meta Title<span class="text-danger">*</span></label>
+                                        <input type="text" title="MetaTitle" asp-for="MetaTitle" class="form-control" />
+                                        <span asp-validation-for="MetaTitle" class="field-validation-error"> </span>
+                                    </div>
+
+                                    <div class="form-group required">
+                                        <label for="title">Meta Keyword<span class="text-danger">*</span></label>
+                                        <input type="text" title="MetaKeyword" asp-for="MetaKeyword" class="form-control" />
+                                        <span asp-validation-for="MetaKeyword" class="field-validation-error"> </span>
+                                    </div>
+
+                                    <div class="form-group required">
+                                        <label for="description">Meta Description<span class="text-danger">*</span></label>
+                                        <textarea asp-for="MetaDescription" title="MetaDescription" class="form-control" placeholder="Enter..."></textarea>
+                                        <span asp-validation-for="MetaDescription" class="field-validation-error"> </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row" style="margin-top: 15px;">
+                                <div class="col-md-12">
+                                    <div class="form-group required">
+                                        <label for="description">Description<span class="text-danger">*</span></label>
+                                        <textarea asp-for="Description" title="MetaDescription" class="form-control" placeholder="Enter..."></textarea>
+                                        <span asp-validation-for="Description" id="Description" name="Description" class="field-validation-error errLongDescription errorMessageDescription"> </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="chk-container" asp-for="Status" class="switchBox switch-small"></label>
+                                    <input type="checkbox" asp-for="Status" class="form-checkbox" />
+                                    <span class="slider round"></span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary"> <i class="fa fa-fw fa-save"></i>Submit</button>
+                        <a href="@Url.Action("Index", "Pages")" class="btn btn-warning btn-flat" title="Back"><i class="fa fa-fw fa-chevron-circle-left"></i> Back</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+@{
+    var editModel = new Modal { ID = "frmproductmanager", AreaLabeledId = "frmproductmanager", Size = ModalSize.Large };
+
+}
+@section Scripts{
+    <script src="~/js/view/allpages/allpages.js"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('Description', { extraAllowedContent: '*(*);*{*}' });
+        CKEDITOR.instances['Description'].on("instanceReady", function () {
+            this.on("change", function () {
+                CKEDITOR.instances['Description'].updateElement();
+            });
+        });
+
+        
+    </script>
+}
+

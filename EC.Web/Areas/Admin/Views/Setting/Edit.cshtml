@@ -1,0 +1,84 @@
+﻿@model SettingViewModels
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title">Manage General Setting</h4>
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","dashboard")">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","Setting")">General Setting</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit setting</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+      <form method="POST" action="" accept-charset="UTF-8">
+       <input name="_method" type="hidden" value="PATCH">
+       <input name="_token" type="hidden" value="dqtJJhNiC15lCvayVFpiijeBHVO6TI5ubTp5BRqf">
+        
+  <div class="row">
+    <div class="col-md-12">
+      <!-- SELECT2 EXAMPLE -->
+      <div class="card card-default">
+       
+        <div class="card-body">
+           <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                         <input asp-for="Manager" type="hidden" value="general">
+                        <input asp-for="FieldType" type="hidden" value="text">
+                            <div class="form-group required ">
+                                <label for="title">Title <span class="text-danger">*</span></label>
+                              <input class="form-control" placeholder="Title" asp-for="Title" id="title" type="text">
+                              <span asp-validation-for="Title" class="field-validation-error"> </span>
+                             </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group required ">
+                              <label for="title">Constant/Slug</label>
+                               <input class="form-control" placeholder="Constant/Slug" readonly asp-for="Slug" type="text">
+                             </div>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-md-6">
+                            <div class="form-group required ">
+                                <label for="config_value">Config Value <span class="text-danger">*</span></label>
+                               <textarea class="form-control" placeholder="Config Value" rows="5" id="config_value" asp-for="ConfigValue" cols="50">E-Commerce</textarea>
+                                  <span asp-validation-for="ConfigValue" class="field-validation-error"> </span>
+                            </div>
+                        </div>
+                    </div>
+           </div>
+        </div>
+        <div class="card-footer">
+		  <button type="submit" class="btn btn-primary submit-form"> <i class="fa fa-fw fa-save"></i>Submit</button>
+          <a href="@Url.Action("Index","Setting")" class="btn btn-warning btn-flat" title="Back"><i class="fa fa-fw fa-chevron-circle-left"></i> Back</a>
+        </div>
+        
+      </div>
+     
+    </div>
+    
+  </div>
+        </form>
+    </div>
+    
+</div>
+
+

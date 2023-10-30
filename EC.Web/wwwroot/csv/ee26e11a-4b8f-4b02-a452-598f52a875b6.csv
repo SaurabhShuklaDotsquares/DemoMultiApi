@@ -1,0 +1,18 @@
+Order Id,First Name,Last Name,Mobile,Email,Status,Billing Address,Shipping Address,Shipping Type,Message,Payment Method,Transaction Id,Created_at,Updated_at
+10238-1681209084-GKUUTEI,javed,kureshi,1234567890,javed.kureshi@dstest.com,completed,",rajasthan,560002,jaipur,india",",rajasthan,560002,jaipur,india",online,Test,online,tok_1MveYrLN6Zr869p3jfpqfjS0,11-04-2023 16:01:32,27-04-2023 15:32:39
+10257-1683890474-LCNYZPR,Kajal,Gupta,79486349069,,completed,",R,302004,J,11",",R,302004,J,11",,,online,tok_1N6u2ALN6Zr869p3nck9BRM4,12-05-2023 16:51:14,12-05-2023 16:51:14
+10269-1684243329-VNHYDMU,kajal,gupta,8318873018,,completed,",R,302004,J,10",",R,302004,J,10",,,online,tok_1N8NpNLN6Zr869p3QWxqLL85,16-05-2023 18:52:09,16-05-2023 18:52:09
+10270-1684245090-JKENSEE,kajal,gupta,8318873018,,completed,",R,302004,J,2",",R,302004,J,2",,order completed,online,tok_1N8OHmLN6Zr869p3X6g7wvIp,16-05-2023 19:21:30,17-05-2023 18:31:14
+10271-1684402455-QYQNPLV,Kajal,Gupta,98787707890,,completed,",R,302004,J,8",",R,302004,J,8",,,online,tok_1N93DvLN6Zr869p3JMXSKYkx,18-05-2023 15:04:15,18-05-2023 15:04:15
+10272-1684485919-MFNYAUF,prashant,pal,8318873018,,completed,",R,302030,J,101",",R,302030,J,101",,,online,tok_1N9Ow7LN6Zr869p3f0LQip9s,19-05-2023 14:15:19,19-05-2023 14:15:19
+10279-1684992777-BLQRYRR,Test,user,8855996654,,completed,",R,331301,T,101",",R,302020,J,101",,Delivered ,online,tok_1NBWnFLN6Zr869p3nXWuqMwu,25-05-2023 11:02:57,25-05-2023 11:08:13
+10280-1684995557-JKUKFUR,Test,user,8855996654,,completed,",R,302020,J,101",",R,302020,J,101",,Test,online,tok_1NBXW4LN6Zr869p3OPUxKliX,25-05-2023 11:49:17,25-05-2023 11:52:47
+10290-1685339438-OMGXMVZ,Test,user,8855996654,,completed,",R,302020,J,101",",R,302020,J,101",,Test,online,tok_1NCyyYLN6Zr869p3Q6uQ9M8E,29-05-2023 11:20:38,29-05-2023 11:21:24
+10296-1685356671-ZLMATHO,Test,user,546546545,,completed,",T,225522,t,101",",T,225522,t,101",,Test,online,tok_1ND3SULN6Zr869p3cx5GF4EW,29-05-2023 16:07:51,29-05-2023 16:08:25
+10299-1685449089-CLWGBIE,shubham,singh,7734033758,,completed,",Rajasthan,145236,Jaipur,111",",Rajasthan,145236,Jaipur,111",Home,Completed,Online,ch_3NDRcZLN6Zr869p31iBMGqbq,30-05-2023 17:48:12,08-06-2023 15:04:43
+10300-1685450941-DSLCSHN,Shubham,Singh,8118837529,,completed,",Rajasthan,145236,Jaipur,101",",Rajasthan,145236,Jaipur,101",,completed,online,ch_3NDRyzLN6Zr869p31Tuzmhfc,30-05-2023 18:19:01,08-06-2023 16:49:24
+10301-1685954812-TROPPIX,Prince,Singh,9889768986,,completed,",Rajasthan,302004,Jaipur,101",",Rajasthan,302004,Jaipur,101",,testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest,online,ch_3NFZ3wLN6Zr869p301xNMQVE,05-06-2023 14:16:52,05-07-2023 12:11:36
+10302-1685957420-ABUXDNL,Prince,Singh,9889768986,,completed,",Rajasthan,302004,Jaipur,101",",Rajasthan,302004,Jaipur,101",,completed,online,ch_3NFZk1LN6Zr869p30ewK31ar,05-06-2023 15:00:20,08-06-2023 16:53:19
+10306-1686230197-ULOBPNI,Prince,Singh,9889768980,,completed,",Rajasthan,302004,Jaipur,101",",Rajasthan,302004,Jaipur,101",,,online,ch_3NGiheLN6Zr869p31lY7T00E,08-06-2023 18:46:37,08-06-2023 18:46:37
+10307-1686662406-QUZYAWE,Shubham Singh,Singh,8118837526,,completed,",Rajasthan,145236,Jaipur,101",",Rajasthan,145236,Jaipur,101",,,online,ch_3NIX8kLN6Zr869p31ZtwSrIn,13-06-2023 18:50:06,13-06-2023 18:50:06
+10308-1686813018-GEESCIE,Shubham Singh,Singh,8118837526,,completed,",Rajasthan,145236,Jaipur,101",",Rajasthan,145236,Jaipur,101",,yrtyytyty,online,ch_3NJAJzLN6Zr869p316lYFppc,15-06-2023 12:40:18,04-07-2023 19:24:18

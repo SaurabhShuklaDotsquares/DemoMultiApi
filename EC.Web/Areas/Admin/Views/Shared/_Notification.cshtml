@@ -1,0 +1,28 @@
+﻿@{
+    var model = ViewData["NotificationModel"] as EC.Core.Models.Others.Notification;
+    if (model == null)
+    {
+        if (TempData["NotificationModel"] != null)
+        {
+
+            model = Newtonsoft.Json.JsonConvert.DeserializeObject<EC.Core.Models.Others.Notification>(TempData["NotificationModel"].ToString());
+        }
+    }
+}
+
+@if (model != null)
+{
+    <div class="alert alert-@(model.Type.ToString().ToLower()) alert-dismissable">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        @(model.Message)
+    </div>
+}
+
+@*<script type="text/javascript">
+    window.setTimeout(function () {
+        $(".alert-dismissable").slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 2000);
+
+</script>*@

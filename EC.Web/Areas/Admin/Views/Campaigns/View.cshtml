@@ -1,0 +1,91 @@
+﻿@model CampaignsViewModels
+
+<div class="page-wrapper width">
+    <partial name="_Notification" />
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center padding-25">
+                <h4 class="page-title">Campaign Manager</h4>
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","dashboard")">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","Campaigns")">Campaign manager</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <section class="content" data-table="emailHooks">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-body">
+                        <table class="table table-hover table-striped">
+                            <input type="hidden" asp-for="Id"/> 
+                            <tr>
+                                <th scope="row">Title</th>
+                                <td>@Model.Title</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Template</th>
+                                <td>@Model.Template</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Total Users</th>
+                                <td>@Model.TotalUsers</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Progress</th>
+                                <td>
+                                        <div class="col" style="padding: 0;">@Model.Progress</div>
+                                        <div class="col">
+                                            <a asp-action="Pending" asp-route-id="@Model.Id" asp-route-foo="Campaigns" class="btn btn-primary pull-right" title="Send to Pending">Send Pending <i class="fas fa-paper-plane"></i></a>
+                                        </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Status</th>
+                                <td>@Model.showStatus</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Success</th>
+                                <td>@Model.Success</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Failed</th>
+                                <td>
+                                        <div class="col" style="padding: 0;">@Model.Failed</div>
+                                        <div class="col">
+                                            <a asp-action="FaildMail" asp-route-id="@Model.Id" asp-route-foo="Campaigns" class="btn btn-primary pull-right" title="Send to Failed">Send Failed <i class="fas fa-paper-plane"></i></a>
+                                        </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Created</th>
+                                <td>@Model.CreatedAt</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Modified</th>
+                                <td>@Model.UpdatedAt</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br/>
+                    <div class="box-footer">
+                        <a href="@Url.Action("Index","Campaigns")" class="btn btn-warning btn-flat pull-right mr-lg-3" title="Back" style="margin-top:-20px"><i class="fa fa-fw fa-chevron-circle-left"></i> Back</a>
+                    </div>
+                    <br />
+                </div>
+            </div>
+</section>
+    </div>
+</div>

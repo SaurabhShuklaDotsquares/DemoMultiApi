@@ -1,0 +1,164 @@
+﻿
+@model ShippingViewModels
+
+<div class="page-wrapper">
+    <link rel="stylesheet" href="https://unpkg.com/tagin@2.0.2/dist/tagin.min.css">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <partial name="_Notification" />
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title" style="margin-left: 10px">Shipping  Manager</h4>
+                <!-- <small>Here you can add shippingrate</small> -->
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","dashboard")">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","Shipping")">Shipping manager</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Add</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST" action="@Url.Action("Create","Shipping")" accept-charset="UTF-8" enctype="multipart/form-data" class="form">
+                            <!--New Selection for Featured Selection of a Category-->
+                            <div class="form-group required">
+                                <label>Maximum Order Amount<span style="color: #cc0000;">*</span></label>
+                                <input type="number" placeholder="Maximum order amount" id="maxprice" asp-for="MaximumOrderAmount" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" maxlength="5" onkeyup="check_price()" />
+                                <span asp-validation-for="MaximumOrderAmount" class="field-validation-error"> </span>
+                            </div>
+                            <div class="form-group required">
+                                <label>Minimum Order Amount<span style="color: #cc0000;">*</span></label>
+                                <input type="number" asp-for="MinimumOrderAmount" placeholder="Minimum order amount" id="minprice" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" maxlength="5" onkeyup="check_price()" />
+                                <span class="help-block" id="min_error" style="display: none;color: #cc0000;"></span>
+                                <span asp-validation-for="MinimumOrderAmount" class="field-validation-error"> </span>
+                            </div>
+                            <!-- New Selection for Featured Selection of a Category -->
+                            <div class="form-group required">
+                                <label>Shipping charges<span style="color: #cc0000;">*</span></label>
+                                <input class="form-control" placeholder="Shipping charge" max="999999999" type="number" asp-for="ShippingCharge" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
+                                <span asp-validation-for="ShippingCharge" class="field-validation-error"> </span>
+                            </div>
+                           @*<div class="form-group row">
+                                <label class="col-sm-2 col-form-label" asp-for="Status" class="switchBox switch-small"></label>
+                             <div class="col-sm-10">
+                                 <label class="switch">
+                                     <input type="checkbox" asp-for="Status" class="form-checkbox" />
+                                     <span class="slider round"></span>
+                                 </label>
+                             </div>
+                           </div>*@
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label" asp-for="Status" class="switchBox switch-small"></label>
+                                <div class="col-sm-10">
+                                    <label class="switch">
+                                        <input type="checkbox" asp-for="Status" class="form-checkbox" style="margin-top: 9px;
+    margin-left: -86px;"/>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="submit_btn"> <i class="fa fa-fw fa-save"></i>Submit</button>
+                            <a href="@Url.Action("Index","Shipping")" class="btn btn-warning btn-flat" title="Back"><i class="fa fa-fw fa-chevron-circle-left"></i> Back</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+    </div>
+</div>
+@*<script src="https://unpkg.com/tagin@2.0.2/dist/tagin.min.js"></script>
+<script>
+    $(document).ready(function () {
+      debugger;
+        $("#country-dropdown").on('change', function () {
+            var idCountry = this.value;
+            var get = $('#getregionid').val();
+            $("#state-dropdown").html('');
+            $.ajax({
+                url: "/Shipping/StatList",
+                type: "GET",
+                data: {
+                    country_code: idCountry,
+                },
+                dataType: 'json',
+                success: function (result) {
+                    $("#state-dropdown").html('<option value>-- Select Region --</option>');
+                    $.each(JSON.parse(result.data), function (key, Value) {
+                        $("#state-dropdown").append('<option value=' + Value.Value + (0 === Value ? '' : '') + '>' + Value.Text + '</option>');
+                    });
+                    $("#state-dropdown").val(get)
+                }
+            });
+        });
+        $("#country-dropdown").change();
+        
+        $("#zip_to").change(e => {
+            if(parseInt(e.target.value) > parseInt($("#zip_to").val())){
+                $("#zip_to").val(e.target.value);
+            }
+        })
+        $("#zip_from").change(e => {
+            if (parseInt(e.target.value) < parseInt($("#zip_from").val())) {
+                $("#zip_from").val(e.target.value);
+            }
+        })
+        new Tagin(document.querySelector('.tagin'))
+    });
+</script>*@
+
+
+<script>
+    function check_price() {
+        var price = parseFloat($('#maxprice').val());
+        var discounted_price = parseFloat($('#minprice').val());
+        if (discounted_price == "") {
+            $('#minprice').val('');
+            $('#min_error').html('Please enter the min price');
+            $('#min_error').show();
+        } else {
+            $('#min_error').hide();
+            if (price <= discounted_price) {
+                if ($('#minprice').val() == '') {
+                    $('#min_error').css('display','none');
+                }
+                $('#minprice').val('');
+                $('#min_error').html('Min price not more than Max price');
+                $('#min_error').show(); 
+            }
+            else{
+                $('#min_error').html('')
+            }
+        }
+    }
+
+    $("#submit_btn").on('click', function () {
+        debugger;
+        $('#min_error').hide();
+    })
+
+</script>
+
+
+
+
+
+
+

@@ -1,0 +1,74 @@
+﻿@model SettingViewModels
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title">General Setting</h4>
+                <h6>Here you can view General Setting detail</h6>
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","dasboard")">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","Setting")">General Setting</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content" data-table="optionValues">
+        <div class="box">
+            <br>
+            <div class="box-body">
+
+                <table class="table table-hover table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Title</th>
+                            <td>@Model.Title</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Manager</th>
+                            <td>@Model.Manager</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Constant/Slug</th>
+                            <td>@Model.Slug</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Config Value</th>
+                            <td>@Model.ConfigValue</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Field Type</th>
+                            <td>@Model.FieldType</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Created</th>
+                            <td>@Model.CreatedAt</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Modified</th>
+                            <td>@Model.UpdatedAt</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <a href="@Url.Action("Index","Setting")" class="btn btn-default pull-left ml-3" title="Cancel">
+            <i class="fa fa-fw fa-chevron-circle-left"></i> Back
+        </a>
+    </section>
+</div>
+ 
+

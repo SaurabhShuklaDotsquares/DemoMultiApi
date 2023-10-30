@@ -1,0 +1,280 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+    var listDate = Json.Serialize(ViewBag.Alldate);
+}
+<link href="~/css/chartist.min.css" rel="stylesheet" />
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <style>
+        .ct-series-a .ct-line,
+        .ct-series-a .ct-point {
+            stroke: #137eff;
+        }
+    </style>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 order-lg-2 order-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="col-10">
+                                <h4 class="card-title mb-0">Dashboard</h4>
+                            </div>
+                            <form method="GET" action="@Url.Action("Index","Dashboard")" accept-charset="UTF-8">
+                                <div class="ml-auto">
+                                    <select name="filterPeriod" class="custom-select  text-muted" id="dropdownid" onchange="this.form.submit()" selected>
+                                        @if (ViewBag.filterPeriod == "7")
+                                        {
+                                        <option selected="selected" value="7">Last 7 days</option>
+                                            <option value="15">Last 15 days</option>
+                                            <option value="30">Last 30 days</option>
+                                        }
+                                        else @if(ViewBag.filterPeriod == "15")
+                                        { 
+                                            <option value="7">Last 7 days</option>
+                                        <option selected="selected" value="15">Last 15 days</option>
+                                            <option value="30">Last 30 days</option>
+                                        }
+                                        else @if(ViewBag.filterPeriod == "30")
+                                        {
+                                            <option value="7">Last 7 days</option>
+                                            <option value="15">Last 15 days</option>
+                                            <option selected="selected" value="30">Last 30 days</option>
+
+                                        }
+                                        @*<option value="7" >Last 7 days</option>
+                                        <option value="15">Last 15 days</option>
+                                        <option value="30">Last 30 days</option>*@
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-group">
+            <div class="card">
+                <div class="card-body">
+                    <a href="@Url.Action("Index","Order")">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex no-block align-items-center">
+                                    <div>
+                                        <i class="fa fa-cube font-20  text-muted"></i>
+                                        <p class="font-16 m-b-5 text-info">Total Orders</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <h1 class="font-light text-right text-info">@ViewBag.Total_Order_Complete</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="progress">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height: 6px;"
+                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="card">
+                <div class="card-body">
+                    <a href="@Url.Action("Index","usermanager")">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex no-block align-items-center">
+                                    <div>
+                                        @*<i class="fa-solid fa-face-smile"></i>*@
+
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <p class="font-16 m-b-5 text-primary">Total Active User</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <h1 class="font-light text-right text-primary">@ViewBag.Total_UsersList_Active</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar"
+                                         style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0"
+                                         aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="card">
+                <div class="card-body">
+                    <a href="@Url.Action("Index","Order")">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex no-block align-items-center">
+                                    <div>
+                                        <i class="fa fa-usd" aria-hidden="true"></i>
+                                        <p class="font-16 m-b-5 text-success">Total Sales</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <h3 class="font-light text-right text-success">
+                                            $@ViewBag.Total_Order_Complete1
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                         style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0"
+                                         aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="card">
+                <div class="card-body">
+                    <a href="@Url.Action("Index","Reviews")">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex no-block align-items-center">
+                                    <div>
+                                        <i class="fa fa-star text-warning" aria-hidden="true"></i>
+                                        <p class="font-16 m-b-5 text-warning">Reviews</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <h1 class="font-light text-right text-warning">@ViewBag.Total_Reviews</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning" role="progressbar"
+                                         style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0"
+                                         aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 order-lg-2 order-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h4 class="card-title">Sales Ratio of last @ViewBag.filterPeriod days</h4>
+                            </div>
+                        </div>
+
+                        <div id="my-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- column -->
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h4 class="card-title">Orders of last @ViewBag.filterPeriod days</h4>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="table-responsive1">
+                        <table class="table table-hover1">
+                            <thead>
+                                <tr>
+                                    <th>Sr No.</th>
+                                    <th class="border-top-0">ORDER NUMBER</th>
+                                    <th class="border-top-0">NAME</th>
+                                    <th class="border-top-0">STATUS</th>
+                                    <th class="border-top-0">DATE</th>
+                                    <th class="border-top-0">PRICE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                             @{ 
+                                 int a = 1;
+                                foreach (var item in ViewBag.Total_Order_Complete_List)
+                                {
+                                  <tr>
+                                    <td>@a</td>
+                                    <td>
+                                      @item.OrderId
+                                    </td>
+                                    <td>@item.User.Firstname  @item.User.Lastname</td>
+                                    <td>
+                                     <span class="label label-success label-rounded">
+                                       @item.Status
+                                    </span>
+                                  
+                                    </td>
+                                    <td>@item.CreatedAt</td>
+                                    <td>$@item.Amount</td>
+                                  </tr>
+                                  a++;
+                                }
+
+                              }
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="~/js/chartist.min.js"></script>
+<script>
+//$(document).ready(function(){
+
+//    $('#dropdownid').val('selectedvalue');
+
+//});
+</script>
+
+<script>
+    var vales = [@ViewBag.AllAmmount];
+    var lables = @listDate;
+    var data = {
+        labels: lables,
+        series: [
+            vales
+        ]
+    };
+
+    var options = {
+        width: 1000,
+        height: 400,
+    };
+    new Chartist.Line('#my-chart', data, options);
+</script>
+<script>
+    //$('#dropdownid').val(@ViewBag.filterPeriod).change();
+    //alert("11");
+</script>

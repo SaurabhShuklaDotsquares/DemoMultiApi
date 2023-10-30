@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Banner Manager";
+}
+@section styles{
+    <link href="~/lib/alertifyjs/css/alertify.css" rel="stylesheet" />
+    <link href="~/lib/alertifyjs/css/themes/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/DataTables-1.10.20/css/dataTables.bootstrap4.min.css" />
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Banner Manager</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-action="index" asp-controller="dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Banner Manager</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+     <partial name="_Notification" />
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                 <div class="card-header">
+                    <div class="card-tools">
+                        <a id="CreateEdit" data-tooltip="tooltip" title="Add New Banner" data-toggle="modal" asp-action="CreateEdit" asp-controller="Banner" data-target="#modal-add-edit-banner" class="btn btn-success btn-sm pull-right">
+                            <i class="fa fa-plus"></i> Add New
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body table-responsive">
+                    <table id="grid-Banner" class="table table-bordered table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Id</th>                                  @* [0]*@
+                                <th width="2%">#</th>                        @* [1]*@
+                                <th>Title</th>                               @* [2]*@
+                                <th width="20%">Banner</th>                  @* [3]*@
+                                <th>Approval Status</th>                     @* [4]*@
+                                <th>Type</th>                                @* [5]*@
+                                <th>Action</th>                              @* [6]*@
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot></tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@{
+    var editModel = new Modal { ID = "modal-add-edit-banner", AreaLabeledId = "modal-add-edit-banner-label", Size = ModalSize.Large };
+    var viewModel = new Modal { ID = "modal-add-view-banner", AreaLabeledId = "modal-add-view-banner-label", Size = ModalSize.Large };
+    var deleteModel = new Modal { ID = "modal-delete-banner", AreaLabeledId = "modal-action-delete-label", Size = ModalSize.Medium };
+}
+<partial name="_Modal" model="editModel" />
+<partial name="_Modal" model="deleteModel" />
+<partial name="_Modal" model="viewModel" />
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('[data-tooltip="tooltip"]').tooltip();
+        });
+    </script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap-switch.js"></script>
+    <script src="~/lib/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/js/view/admin/banners/index.js"></script>
+}
+
+
+

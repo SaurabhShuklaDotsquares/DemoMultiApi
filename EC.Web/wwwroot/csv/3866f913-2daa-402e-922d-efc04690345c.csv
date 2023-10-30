@@ -1,0 +1,14 @@
+Id,Order Id,First Name,Last Name,Mobile,Email,Status,Billing Address,Shipping Address,Shipping Type,Message,Payment Method,Transaction Id,Created_at,Updated_at
+6,10001-1668428795-ixIwBF,Prashant,pal,8318873018,prashant.pal@dotsquares.com,returned,{
+  "address1" :"123" ,
+  "state" : "Jaipur",
+  "postal_code" : "210301",
+    "city":"pinkCity",
+    "country":"India"
+} ,{
+  "address1" :"123" ,
+  "state" : "Jaipur",
+  "postal_code" : "210301",
+    "city":"pinkCity",
+    "country":"India"
+} ,free,dddd,online,,12-03-2011 00:00:00,13-12-2022 19:09:36

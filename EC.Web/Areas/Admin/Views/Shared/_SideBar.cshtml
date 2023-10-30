@@ -1,0 +1,320 @@
+﻿@model EC.Web.Models.SidebarViewModel
+@{
+    @using Microsoft.AspNetCore.Http;
+    @using Microsoft.AspNetCore.Http.Extensions;
+
+    var Logo = Context.Session.GetString("Main_Logo");
+    string url = Context.Request.Path.ToString().Split('/').Count() == 3 ? Context.Request.Path.ToString().Split('/')[2] : Context.Request.Path.ToString().Split('/')[3];
+}
+@using EC.Web.Areas.Admin.ViewModels
+@using EC.Core.LIBS;
+@using System.Linq;
+
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a asp-action="index" asp-controller="Dashboard" asp-area="Admin" class="brand-link" style="padding-top: 0px">
+
+        <span class="brand-text font-weight-light">
+
+            @*<img style="width: 90%; object-fit: contain; height: 70px" src="~/Uploads/@Model.MailLogovalue" id="blah1" alt="your image" style="max-height:80px;">*@
+            <img style="width: 90%; object-fit: contain; height: 85px; padding-top:15px;" src=~/Uploads/@Model.Logo
+                 alt="User profile picture">
+        </span>
+    </a>
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">*@
+    <style>
+        .a{
+            visibility:hidden;
+        }
+
+        .fa{
+            font-weight: 900;
+        }
+
+        .fa {
+           /*font-family: "Font Awesome 5 Free"; */
+        }
+        ::after, ::before {
+    box-sizing: border-box;
+}
+    </style>
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <!-- Sidebar user (optional) -->
+        @*<div class="user-panel mt-3 pb-3 mb-3 d-flex a">
+            <div class="image">
+                @if (CurrentUser.Gender == (int)GenderEnum.Male)
+                {
+                    <img width="128" class="img-circle elevation-2"
+                     src="~/n7rtvhmksrzr7d4bctwhtqgykbbufgfx7j7srp1u.png"
+                         alt="User profile picture">
+                }
+                else
+                {
+                    <img width="128" class="img-circle elevation-2"
+                     src="~/n7rtvhmksrzr7d4bctwhtqgykbbufgfx7j7srp1u.png"
+                         alt="User profile picture">
+                }
+            </div>
+            <div class="info">
+                @if (!CurrentUser.Role.Equals("user"))
+                {
+                    <a asp-action="index" asp-controller="Dashboard" asp-area="Admin" class="d-block">@(!string.IsNullOrEmpty(CurrentUser.Firstname) ? CurrentUser.Firstname + " " + CurrentUser.Lastname : "")</a>
+                }
+                else
+                {
+                    <a href="@SiteKeys.Domain" class="d-block">Home</a>
+                }
+            </div>
+        </div>*@
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                    <a href="@Url.Action("index", "Dashboard")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Dashboard.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fas fa-tachometer-alt"></i>
+                        &nbsp;
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("index", "usermanager")" class="nav-link @(url.ToLower().Equals(SideBarEnum.usermanager.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fas fa-users"></i>
+                        &nbsp;
+                        <p>
+                            User Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("index", "category")" class="nav-link @(url.ToLower().Equals(SideBarEnum.category.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fas fa-list-alt"></i>
+                        &nbsp;
+                        <p>
+                            Category Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("index", "Vendor")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Vendor.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fas fa-user-check"></i>
+                        &nbsp;
+                        <p>
+                            Vendor Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("index", "brands")" class="nav-link @(url.ToLower().Equals(SideBarEnum.brands.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fas fa-bahai"></i>
+                        &nbsp;
+                        <p>
+                            Brand Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("index", "attribute")" class="nav-link @(url.ToLower().Equals(SideBarEnum.attribute.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fas fa-list"></i>
+                        &nbsp;
+                        <p>
+                            Attribute Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("index", "products")" class="nav-link @(url.ToLower().Equals(SideBarEnum.products.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fab fa-creative-commons-remix"></i>
+                        &nbsp;
+                        <p>
+                            Product Manager
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("index", "Order")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Order.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fa fa-shopping-cart"></i>
+                        &nbsp;
+                        <p>
+                            Order Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Pages")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Pages.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fa fa-file"></i>
+                        &nbsp;
+                        <p>
+                            CMS Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Payments")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Payments.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="far fa-money-bill-alt"></i>
+                        &nbsp;
+                        <p>
+                            Payment Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Reviews")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Reviews.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fa fa-comments"></i>
+                        &nbsp;
+                        <p>
+                            Review Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Reports")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Reports.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fa fa-bug"></i>
+                        &nbsp;
+                        <p>
+                            Report Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item1">
+                    <a href="@Url.Action("Index","ContactUs")" class="nav-link @(url.ToLower().Equals(SideBarEnum.ContactUs.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        @*  <i class="fa fa-phone"></i>*@
+                        &nbsp;
+                        <p>
+                            Contact Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","Banner")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Banner.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fa fa-image"></i>
+                        &nbsp;
+                        <p>
+                            Banner Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","Email")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Email.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fa fa-envelope"></i>
+                        &nbsp;
+                        <p>
+                            Email Manager
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","Newsletters")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Newsletters.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fa fa-bullhorn"></i>
+
+                        <span class="hide-menu">
+                            &nbsp;Newsletter Subscription
+                            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Manager
+                        </span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-cog"></i>
+                        &nbsp;
+                        <p>
+                            Setting Manager
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="@Url.Action("Create","Setting")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Create.GetName().ToLower()) ? "sidebarActive" : "")">
+                                <i class="fa-solid fa-image"></i>
+                                &nbsp;
+                                <p>Logo/Favicon Icon</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","Setting")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Setting.GetName().ToLower()) ? "sidebarActive" : "")">
+                                <i class="fa fa-dot-circle"></i>
+                                &nbsp;
+                                <p>General Settings</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("EditSMTP","Setting")" class="nav-link @(url.ToLower().Equals(SideBarEnum.EditSMTP.GetName().ToLower()) ? "sidebarActive" : "")">
+                                <i class="fa fa-envelope"></i>
+                                &nbsp;
+                                <p>SMTP Details</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("EditSocialMedia","Setting")" class="nav-link @(url.ToLower().Equals(SideBarEnum.EditSocialMedia.GetName().ToLower()) ? "sidebarActive" : "")">
+                                <i class="fa fa-share-square"></i>
+                                &nbsp;
+                                <p>Social Links</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @*  </ul>*@
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","ReturnRequest")" class="nav-link @(url.ToLower().Equals(SideBarEnum.ReturnRequest.GetName().ToLower()) ? "sidebarActive" : "")">
+                        @* <i class="fa fa-refresh"></i>*@
+                        <i class="fa fa-refresh"></i>
+                        &nbsp;
+                        @*<i class="fa fa-refresh" aria-hidden="true"></i>*@
+                        <span class="hide-menu">Return Request Manager</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","Campaigns")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Campaigns.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fas fa-lightbulb"></i>
+                        &nbsp;
+                        <span class="hide-menu">Campaign Manager</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","Taxs")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Taxs.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fa fa-dollar-sign"></i>
+                        &nbsp;
+                        <span class="hide-menu">Tax Manager</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","Coupons")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Coupons.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fa fa-tag"></i>
+                        &nbsp;
+                        <span class="hide-menu">Coupon Manager</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","Shipping")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Shipping.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fas fa-shipping-fast"></i>
+                        &nbsp;
+                        <span class="hide-menu">Shipping Manager</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","Currency")" class="nav-link @(url.ToLower().Equals(SideBarEnum.Currency.GetName().ToLower()) ? "sidebarActive" : "")">
+                        <i class="fas fa-pound-sign"></i>
+                        &nbsp;
+                        <span class="hide-menu">Currency Manager </span>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+    <!-- /.sidebar -->
+</aside>

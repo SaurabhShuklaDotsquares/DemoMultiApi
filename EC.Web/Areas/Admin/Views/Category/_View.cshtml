@@ -1,0 +1,88 @@
+﻿@model CategoryViewModel
+@{
+    var headerModel = new ModalHeader { Heading = " Categories" };
+}
+
+<div id="frm-add-edit-category-add-view-category">
+    <partial name="_ModalHeader" model="headerModel" />
+    <div class="modal-body box-body">
+        <p>Here you can view Category detail</p>
+        <div id="validation-summary"></div>
+        <div class="form-group row">
+            <table class="table table-hover table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">Title</th>
+                        <td>@Model.Title</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Slug</th>
+                        <td>@Model.Slug</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Parent</th>
+                        <td>@Model.ParentName</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Created</th>
+                        <td>@Model.CreatedAt</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Modified</th>
+                        <td>@Model.UpdatedAt</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Featured</th>
+                        @{
+                            @if (Model.IsFeatured == true)
+                            {
+                                <td>Active</td>
+                            }
+                            else
+                            {
+                                <td>InActive</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <th scope="row">Status</th>
+                        @{
+                            @if (Model.Status == true)
+                            {
+                                <td>Active</td>
+                            }
+                            else
+                            {
+                                <td>InActive</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <th scope="row">Commission</th>
+                        <td>@Model.Commission%</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Image</th>
+                        @if (Model.Image!=null)
+                        {
+                            <td><img src="~/Uploads/@Model.Image" class="rounded-circle" height="150" width="150" asp-append-version="true" /></td>
+                        }else
+                        {
+                            <td><img src="~/Uploads/image.jpg" class="rounded-circle" height="150" width="150" asp-append-version="true" /></td>
+                        }
+                    </tr>
+                     
+                </tbody>
+            </table>
+            
+        </div>
+        <div class="pull-right padding-15">
+            <button data-dismiss="modal" class="btn btn-info pull-right mr-lg-3" type="button">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Brand Manager";
+}
+@section styles{
+    <link href="~/lib/alertifyjs/css/alertify.css" rel="stylesheet" />
+    <link href="~/lib/alertifyjs/css/themes/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/DataTables-1.10.20/css/dataTables.bootstrap4.min.css" />
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Brand Manager</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-action="index" asp-controller="dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Brands</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <partial name="_Notification" />
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-tools">
+                        <a id="CreateEdit" data-tooltip="tooltip" title="Add New Brand" data-toggle="modal" asp-action="CreateEdit" asp-controller="Brands" data-target="#modal-add-edit-brand" class="btn btn-success btn-sm pull-right">
+                            <i class="fa fa-plus"></i> Add New
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body table-responsive">
+                    <table id="grid-brand" style="text-align:center" class="table table-bordered table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th width="2%">#</th>
+                                <th>Title</th>
+                                <th>Slug</th>
+                                <th>Image</th>
+                                <th>Created At</th>
+                                <th>Active Status</th>
+                                <th width="15%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot></tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@{
+    var editModel = new Modal { ID = "modal-add-edit-brand", AreaLabeledId = "modal-add-edit-brand-label", Size = ModalSize.Large };
+    var viewModel = new Modal { ID = "modal-add-view-brand", AreaLabeledId = "modal-add-view-brand-label", Size = ModalSize.Large };
+    var deleteModel = new Modal { ID = "modal-delete-brand", AreaLabeledId = "modal-action-delete-label", Size = ModalSize.Medium };
+}
+<partial name="_Modal" model="editModel" />
+<partial name="_Modal" model="deleteModel" />
+<partial name="_Modal" model="viewModel" />
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('[data-tooltip="tooltip"]').tooltip();
+        });
+    </script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap-switch.js"></script>
+    <script src="~/lib/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/js/view/admin/brands/index.js"></script>
+}
+
+

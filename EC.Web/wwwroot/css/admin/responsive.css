@@ -1,0 +1,7 @@
+﻿.date-block-one, .date-block-two, .date-block-three {
+    position: relative;
+}
+
+    .date-block-two .field-validation-error, .date-block-one .field-validation-error, .date-block-three .field-validation-error {
+        bottom: -20px;
+    }

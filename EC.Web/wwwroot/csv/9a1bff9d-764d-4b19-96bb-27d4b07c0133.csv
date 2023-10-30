@@ -1,0 +1,6 @@
+Id,Order Id,First Name,Last Name,Mobile,Email,Status,Billing Address,Shipping Address,Shipping Type,Message,Payment Method,Transaction Id,Created_at,Updated_at
+40,10232-1677245066-k5dvCK,Vinay,Sharma,1234567890,vinay.sharma@dstest.com,cancelled,",rajasthan,560002,jaipur,india",",rajasthan,560002,jaipur,india",online,,online,tok_1Mve8JLN6Zr869p3EmG6B2py,11-04-2023 15:34:28,27-04-2023 18:46:45
+50,10242-1682500600-BRXKFFU,Raj,Singh,831887301,,cancelled,",Uttar Pradesh,222460,Maudaha,India",",Uttar Pradesh,222460,Maudaha,India",string,,online,9VWSJ0a4,26-04-2023 14:48:31,08-05-2023 14:08:38
+108,10258-1683891628-LISIYAS,Kajal,Gupta,79486349069,,cancelled,",R,302004,J,302004",",R,302004,J,302004",,,online,tok_1N6uKmLN6Zr869p3tWYbjQxq,12-05-2023 17:10:28,16-05-2023 14:36:08
+110,10260-1683893734-SZXNWZA,Kajal,Gupta,79486349069,,cancelled,",R,302004,J,7",",R,302004,J,7",,,online,tok_1N6uskLN6Zr869p3TQqDXauq,12-05-2023 17:45:34,16-05-2023 14:35:19
+128,10278-1684991691-EHWLNKG,Test,user,8855996654,,cancelled,",R,302020,J,101",",R,302020,J,101",,,online,tok_1NBWVjLN6Zr869p3JXGWFvl3,25-05-2023 10:44:51,25-05-2023 10:57:10

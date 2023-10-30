@@ -1,0 +1,134 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget></PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\test\**" />
+    <Content Remove="Views\test\**" />
+    <EmbeddedResource Remove="Views\test\**" />
+    <None Remove="Views\test\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\test.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Uploads\defaultimage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Auth0.ManagementApi" Version="7.17.4" />
+    <PackageReference Include="Dapper" Version="2.0.90" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.29" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.29" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.29">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.29" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.29">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="MvcContrib" Version="2.0.95" />
+    <PackageReference Include="Nancy" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
+    <PackageReference Include="RestSharp" Version="108.0.3" />
+    <PackageReference Include="Stripe.net" Version="41.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\AllPages\" />
+    <Folder Include="wwwroot\csv\" />
+    <Folder Include="wwwroot\InvoicePdf\" />
+    <Folder Include="wwwroot\storage\export\" />
+    <Folder Include="wwwroot\xlsx\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\admin-lte\css\adminlte.css.map" />
+    <None Include="wwwroot\lib\admin-lte\css\adminlte.min.css.map" />
+    <None Include="wwwroot\lib\admin-lte\css\alt\adminlte.components.css.map" />
+    <None Include="wwwroot\lib\admin-lte\css\alt\adminlte.components.min.css.map" />
+    <None Include="wwwroot\lib\admin-lte\css\alt\adminlte.core.css.map" />
+    <None Include="wwwroot\lib\admin-lte\css\alt\adminlte.core.min.css.map" />
+    <None Include="wwwroot\lib\admin-lte\css\alt\adminlte.extra-components.css.map" />
+    <None Include="wwwroot\lib\admin-lte\css\alt\adminlte.extra-components.min.css.map" />
+    <None Include="wwwroot\lib\admin-lte\css\alt\adminlte.pages.css.map" />
+    <None Include="wwwroot\lib\admin-lte\css\alt\adminlte.pages.min.css.map" />
+    <None Include="wwwroot\lib\admin-lte\css\alt\adminlte.plugins.css.map" />
+    <None Include="wwwroot\lib\admin-lte\css\alt\adminlte.plugins.min.css.map" />
+    <None Include="wwwroot\lib\admin-lte\js\adminlte.js" />
+    <None Include="wwwroot\lib\admin-lte\js\adminlte.js.map" />
+    <None Include="wwwroot\lib\admin-lte\js\adminlte.min.js" />
+    <None Include="wwwroot\lib\admin-lte\js\adminlte.min.js.map" />
+    <None Include="wwwroot\lib\admin-lte\js\demo.js" />
+    <None Include="wwwroot\lib\admin-lte\js\pages\dashboard.js" />
+    <None Include="wwwroot\lib\admin-lte\js\pages\dashboard2.js" />
+    <None Include="wwwroot\lib\admin-lte\js\pages\dashboard3.js" />
+    <None Include="wwwroot\lib\alertifyjs\alertify.js" />
+    <None Include="wwwroot\lib\alertifyjs\alertify.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap-switch.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\popper.min.js" />
+    <None Include="wwwroot\lib\bootstrap\LICENSE" />
+    <None Include="wwwroot\lib\DataTables-1.10.20\js\dataTables.bootstrap.js" />
+    <None Include="wwwroot\lib\DataTables-1.10.20\js\dataTables.bootstrap.min.js" />
+    <None Include="wwwroot\lib\DataTables-1.10.20\js\dataTables.bootstrap4.js" />
+    <None Include="wwwroot\lib\DataTables-1.10.20\js\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\lib\DataTables-1.10.20\js\dataTables.foundation.js" />
+    <None Include="wwwroot\lib\DataTables-1.10.20\js\dataTables.foundation.min.js" />
+    <None Include="wwwroot\lib\DataTables-1.10.20\js\dataTables.jqueryui.js" />
+    <None Include="wwwroot\lib\DataTables-1.10.20\js\dataTables.jqueryui.min.js" />
+    <None Include="wwwroot\lib\DataTables-1.10.20\js\dataTables.semanticui.js" />
+    <None Include="wwwroot\lib\DataTables-1.10.20\js\dataTables.semanticui.min.js" />
+    <None Include="wwwroot\lib\DataTables-1.10.20\js\jquery.dataTables.js" />
+    <None Include="wwwroot\lib\DataTables-1.10.20\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\lib\icheck-bootstrap\LICENSE" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+    <None Include="wwwroot\Uploads\defaultimage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EC.Core\EC.Core.csproj" />
+    <ProjectReference Include="..\EC.DataTable\EC.DataTable.csproj" />
+    <ProjectReference Include="..\EC.Data\EC.Data.csproj" />
+    <ProjectReference Include="..\EC.Repo\EC.Repo.csproj" />
+    <ProjectReference Include="..\EC.Service\EC.Service.csproj" />
+  </ItemGroup>
+
+</Project>

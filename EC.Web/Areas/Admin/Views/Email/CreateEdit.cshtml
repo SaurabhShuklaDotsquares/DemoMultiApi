@@ -1,0 +1,971 @@
+﻿@model TemplateEmailViewModel
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.12.17/css/grapes.min.css" rel="stylesheet">
+<link href="https://unpkg.com/grapesjs-preset-newsletter/dist/grapesjs-preset-newsletter.css" rel="stylesheet">
+<link href="https://unpkg.com/grapesjs-preset-newsletter/dist/grapesjs-preset-newsletter.css" rel="stylesheet">
+
+
+<style>
+    #gjs {
+        border: 3px solid #444;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /*body {
+        margin: 0;
+    }*/
+
+    #c2652 {
+        display: none;
+        font-size: 1px;
+        max-height: 0px;
+        max-width: 0px;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        font-family: sans-serif;
+    }
+
+    #c2656 {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    #c2660 {
+        margin: auto;
+        align-content:center;
+    }
+
+    #c2672 {
+        padding: 1em 2.5em 0 2.5em;
+    }
+
+    #c2688 {
+        text-align: center;
+    }
+
+    #c2705 {
+        padding: 2em 0 4em 0;
+    }
+
+    #c2721 {
+        padding: 0 2.5em;
+        text-align: center;
+        padding-bottom: 3em;
+    }
+
+    #c2737 {
+        text-align: center;
+    }
+
+    #c2745 {
+        width: 100px;
+        max-width: 600px;
+        height: auto;
+        margin: auto;
+        display: block;
+    }
+
+    #c2776 {
+        margin: auto;
+    }
+
+    #c2804 {
+        padding-top: 20px;
+    }
+
+    #c2820 {
+        text-align: left;
+        padding-right: 10px;
+    }
+
+    #c2832 {
+        padding-top: 20px;
+    }
+
+    #c2848 {
+        text-align: left;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #c2868 {
+        padding-top: 20px;
+    }
+
+    #c2884 {
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    #c2936 {
+        text-align: center;
+    }
+
+    #c2948 {
+        color: rgba(0, 0, 0, .8);
+    }
+
+    /*html, body {
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(241, 241, 241);
+        margin-top: 0px !important;
+        margin-right: auto !important;
+        margin-bottom: 0px !important;
+        margin-left: auto !important;
+        padding-top: 0px !important;
+        padding-right: 0px !important;
+        padding-bottom: 0px !important;
+        padding-left: 0px !important;
+        height: 100% !important;
+        width: 100% !important;
+    }*/
+
+    * {
+        text-size-adjust: 100%;
+        box-sizing: border-box;
+    }
+
+    div[style *= 'margin: 16px 0'] {
+        margin-top: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 0px !important;
+        margin-left: 0px !important;
+    }
+
+    table {
+        -webkit-border-horizontal-spacing: 0px !important;
+        -webkit-border-vertical-spacing: 0px !important;
+        border-collapse: collapse !important;
+        table-layout: fixed !important;
+        margin-top: 0px !important;
+        margin-right: auto !important;
+        margin-bottom: 0px !important;
+        margin-left: auto !important;
+    }
+
+    a {
+        text-decoration-line: none;
+        text-decoration-thickness: initial;
+        text-decoration-style: initial;
+        text-decoration-color: initial;
+        color: rgb(23, 190, 187);
+    }
+
+    .aBn, [x-apple-data-detectors], .unstyle-auto-detected-links * {
+        border-bottom-width: 0px !important;
+        border-bottom-style: initial !important;
+        border-bottom-color: initial !important;
+        cursor: default !important;
+        color: inherit !important;
+        text-decoration-line: none !important;
+        text-decoration-thickness: initial !important;
+        text-decoration-style: initial !important;
+        text-decoration-color: initial !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+    }
+
+    img.g-img + div {
+        display: none !important;
+    }
+
+    .bg_white {
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(255, 255, 255);
+        text-align: center;
+    }
+
+    .bg_light {
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat-x: initial;
+        background-repeat-y: initial;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(247, 250, 250);
+    }
+
+    .email-section {
+        padding-top: 2.5em;
+        padding-right: 2.5em;
+        padding-bottom: 2.5em;
+        padding-left: 2.5em;
+    }
+
+    .btn {
+        padding-top: 10px;
+        padding-right: 15px;
+        padding-bottom: 10px;
+        padding-left: 15px;
+        display: inline-block;
+    }
+
+        .btn.btn-primary {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-repeat-x: initial;
+            background-repeat-y: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            /*background-color: #f5821f;*/
+            color: rgb(255, 255, 255);
+        }
+
+        .btn.btn-white {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-repeat-x: initial;
+            background-repeat-y: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+        }
+
+        .btn.btn-white-outline {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-repeat-x: initial;
+            background-repeat-y: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: transparent;
+            border-top-width: 1px;
+            border-right-width: 1px;
+            border-bottom-width: 1px;
+            border-left-width: 1px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: rgb(255, 255, 255);
+            border-right-color: rgb(255, 255, 255);
+            border-bottom-color: rgb(255, 255, 255);
+            border-left-color: rgb(255, 255, 255);
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            color: rgb(255, 255, 255);
+        }
+
+        .btn.btn-black-outline {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-repeat-x: initial;
+            background-repeat-y: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: transparent;
+            border-top-width: 2px;
+            border-right-width: 2px;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: rgb(0, 0, 0);
+            border-right-color: rgb(0, 0, 0);
+            border-bottom-color: rgb(0, 0, 0);
+            border-left-color: rgb(0, 0, 0);
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            color: rgb(0, 0, 0);
+            font-weight: 700;
+        }
+
+    .btn-custom {
+        color: rgba(0, 0, 0, 0.3);
+        text-decoration-line: underline;
+        text-decoration-thickness: initial;
+        text-decoration-style: initial;
+        text-decoration-color: initial;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: Poppins, sans-serif;
+        color: rgb(0, 0, 0);
+        margin-top: 0px;
+        font-weight: 400;
+    }
+
+    /*body {
+        font-family: Poppins, sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 1.8;
+        color: rgba(0, 0, 0, 0.4);
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+    }*/
+
+    .logo h1 {
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+    }
+
+        .logo h1 a {
+            color: rgb(23, 190, 187);
+            font-size: 24px;
+            font-weight: 700;
+            font-family: Poppins, sans-serif;
+        }
+
+    .hero {
+        position: relative;
+        z-index: 0;
+    }
+
+        .hero.text {
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+            .hero.text h2 {
+                color: rgb(0, 0, 0);
+                font-size: 34px;
+                margin-bottom: 0px;
+                font-weight: 200;
+                line-height: 1.4;
+            }
+
+            .hero.text h3 {
+                font-size: 24px;
+                font-weight: 300;
+            }
+
+            .hero.text h2 span {
+                font-weight: 600;
+                color: rgb(0, 0, 0);
+            }
+
+    .text-author {
+        border-top-width: 1px;
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+        border-left-width: 1px;
+        border-top-style: solid;
+        border-right-style: solid;
+        border-bottom-style: solid;
+        border-left-style: solid;
+        border-top-color: rgba(0, 0, 0, 0.05);
+        border-right-color: rgba(0, 0, 0, 0.05);
+        border-bottom-color: rgba(0, 0, 0, 0.05);
+        border-left-color: rgba(0, 0, 0, 0.05);
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+        max-width: 50 %;
+        margin-top: 0px;
+        margin-right: auto;
+        margin-bottom: 0px;
+        margin-left: auto;
+        padding-top: 2em;
+        padding-right: 2em;
+        padding-bottom: 2em;
+        padding-left: 2em;
+    }
+
+        .text-author img {
+            border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+            border-bottom-left-radius: 5 %;
+            padding-bottom: 20px;
+        }
+
+        .text-author h3 {
+            margin-bottom: 0px;
+        }
+
+    ul.social {
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+
+        ul.social li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+    .footer {
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-top-color: rgba(0, 0, 0, 0.05);
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+        .footer.heading {
+            color: rgb(0, 0, 0);
+            font-size: 20px;
+        }
+
+        .footer ul {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+        }
+
+            .footer ul li {
+                list-style-position: initial;
+                list-style-image: initial;
+                list-style-type: none;
+                margin-bottom: 10px;
+            }
+
+                .footer ul li a {
+                    color: rgb(0, 0, 0);
+                }
+
+    #c2258 {
+        display: none;
+        font-size: 1px;
+        max-height: 0px;
+        max-width: 0px;
+        opacity: 0;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        font-family: sans-serif;
+    }
+
+    #c2262 {
+        max-width: 600px;
+        margin-top: 0px;
+        margin-right: auto;
+        margin-bottom: 0px;
+        margin-left: auto;
+    }
+
+    #c2266 {
+        margin-top: auto;
+        margin-right: auto;
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+
+    #c2278 {
+        padding-top: 1em;
+        padding-right: 2.5em;
+        padding-bottom: 0px;
+        padding-left: 2.5em;
+    }
+
+    #c2294 {
+        text-align: center;
+    }
+
+    #c2311 {
+        padding-top: 2em;
+        padding-right: 0px;
+        padding-bottom: 4em;
+        padding-left: 0px;
+    }
+
+    #c2327 {
+        padding-top: 0px;
+        padding-right: 2.5em;
+        padding-left: 2.5em;
+        text-align: center;
+        padding-bottom: 3em;
+    }
+
+    #c2343 {
+        text-align: center;
+    }
+
+    #c2351 {
+        width: 100px;
+        max-width: 600px;
+        height: auto;
+        margin-top: auto;
+        margin-right: auto;
+        margin-bottom: auto;
+        margin-left: auto;
+        display: block;
+    }
+
+    #c2380 {
+        margin-top: auto;
+        margin-right: auto;
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+
+    #c2408 {
+        padding-top: 20px;
+    }
+
+    #c2424 {
+        text-align: left;
+        padding-right: 10px;
+    }
+
+    #c2436 {
+        padding-top: 20px;
+    }
+
+    #c2452 {
+        text-align: left;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #c2472 {
+        padding-top: 20px;
+    }
+
+    #c2488 {
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    #c2540 {
+        text-align: center;
+    }
+
+    #c2552 {
+        color: rgba(0, 0, 0, 0.8);
+    }
+
+    #c2485 {
+        display: none;
+        font-size: 1px;
+        max-height: 0px;
+        max-width: 0px;
+        opacity: 0;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        font-family: sans-serif;
+    }
+
+    #c2489 {
+        max-width: 600px;
+        margin-top: 0px;
+        margin-right: auto;
+        margin-bottom: 0px;
+        margin-left: auto;
+    }
+
+    #c2493 {
+        margin-top: auto;
+        margin-right: auto;
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+
+    #c2505 {
+        padding-top: 1em;
+        padding-right: 2.5em;
+        padding-bottom: 0px;
+        padding-left: 2.5em;
+    }
+
+    #c2521 {
+        text-align: center;
+    }
+
+    #c2538 {
+        padding-top: 2em;
+        padding-right: 0px;
+        padding-bottom: 4em;
+        padding-left: 0px;
+    }
+
+    #c2554 {
+        padding-top: 0px;
+        padding-right: 2.5em;
+        padding-left: 2.5em;
+        text-align: center;
+        padding-bottom: 3em;
+    }
+
+    #c2570 {
+        text-align: center;
+    }
+
+    #c2578 {
+        width: 100px;
+        max-width: 600px;
+        height: auto;
+        margin-top: auto;
+        margin-right: auto;
+        margin-bottom: auto;
+        margin-left: auto;
+        display: block;
+    }
+
+    #c2607 {
+        margin-top: auto;
+        margin-right: auto;
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+
+    #c2635 {
+        padding-top: 20px;
+    }
+
+    #c2651 {
+        text-align: left;
+        padding-right: 10px;
+    }
+
+    #c2663 {
+        padding-top: 20px;
+    }
+
+    #c2679 {
+        text-align: left;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #c2699 {
+        padding-top: 20px;
+    }
+
+    #c2715 {
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    #c2767 {
+        text-align: center;
+    }
+
+    #c2779 {
+        color: rgba(0, 0, 0, 0.8);
+    }
+
+    .heading-section h2 {
+        color: rgb(0, 0, 0);
+        font-size: 28px;
+        margin-top: 0px;
+        line-height: 1.4;
+        font-weight: 400;
+    }
+
+    .heading-section.subheading {
+        display: inline-block;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: rgba(0, 0, 0, 0.4);
+        position: relative;
+        margin-bottom: 20px !important;
+    }
+
+        .heading-section.subheading::after {
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            bottom: -10px;
+            content: '';
+            width: 100%;
+            height: 2px;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-repeat-x: initial;
+            background-repeat-y: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(48, 227, 202);
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+        }
+
+    .heading-section-white h2 {
+        padding-bottom: 0px;
+        color: rgb(255, 255, 255);
+    }
+
+    .heading-section-white.subheading {
+        margin-bottom: 0px;
+        display: inline-block;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .c2648 {
+        width: 100%;
+        background-color: #f1f1f1;
+    }
+
+    .c3873 {
+        color: black;
+    }
+
+    /*media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+        u div.email-container
+
+    {
+        min-width: 320px !important;
+    }
+
+    }
+
+    media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+        udiv .email-container
+
+    {
+        min-width: 375px !important;
+    }
+
+    }
+
+    media only screen and (min-device-width:414px) {
+        u ~div.email-container
+
+    {
+        min-width: 414px !important;
+    }
+
+    }*/
+
+</style>
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-5 align-self-center">
+            <h4 class="page-title">Email Manager</h4>
+            @*<small>Here you can Add emails</small>*@
+        </div>
+        <div class="col-7 align-self-center">
+            <div class="d-flex align-items-center justify-content-end">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="@Url.Action("Index","Dashboard")">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="@Url.Action("Index","Email")">Email manager</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Add emails</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <form method="POST" action="@Url.Action("CreateEdit","Email")" id="emailTemplateForm" accept-charset="UTF-8" enctype="multipart/form-data">
+        <input name="_token" type="hidden" value="xX7itc4mBpERC4xAYlo11C42HkM46Erfuy4zbOIL">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- SELECT2 EXAMPLE -->
+                <div class="card card-default">
+
+                    <div class="card-body">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group required ">
+                                        <label for="emailname">Name<span class="Text-Red"><b>*</b></span></label>
+                                        <input asp-for="Name" type="text" class="form-control" placeholder="Enter Name">
+                                        <span asp-validation-for="Name" class="Text-Red"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group ">
+                                        <label for="emailsubject">Subject<span class="Text-Red"><b>*</b></span></label>
+                                        <input asp-for="Subject" type="text" class="form-control" placeholder="Enter Subject">
+                                        <span asp-validation-for="Subject" class="Text-Red"></span>
+                                    </div>
+                                </div>
+                            </div> <!-- /.row -->
+                            <div class="row" style="margin-top: 15px;">
+                                <div class="col-md-12">
+                                    <div class="form-group required ">
+                                        <label for="Description">Description<span class="Text-Red"><b>*</b></span></label>
+                                        <textarea class="form-control ckeditor" asp-for="Description"placeholder="Description" rows="8" name="description" cols="50" required></textarea>
+                                        <span asp-validation-for="Description" id="errorMessageDescription" class="field-validation-error errLongDescription Text-Red"></span>
+                                        @*<div id="gjs">
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-form-submit" id="myButton"> <i class="fa fa-fw fa-save"></i>Submit</button>
+        <a href="@Url.Action("Index","Email")" class="btn btn-warning btn-flat" title="Back"><i class="fa fa-fw fa-chevron-circle-left"></i> Back</a>
+    </form>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            var modelId = '@(Model.Id)';
+            var editor;
+            //editor = grapesjs.init({
+            //    // Indicate where to init the editor. You can also pass an HTMLElement
+            //    container: '#gjs',
+            //    plugins: ['gjs-preset-newsletter'],
+            //    storageManager: false,
+            //});
+            if (parseInt(modelId) == 0) {
+
+                editor.setComponents("<center class='c2648'><div id='c2652'></div><div class='email-container' id ='c2656'><table id='c2660' align='center' role='presentation' cellspacing='0' cellpadding='0' border='0' width='100%'><tr><td class='bg_white' id='c2672' valign='top'><img class='c3873' src='https://www.dotsquares.com/img/uploads/dotlo-1-1.png'/><table role='presentation' border='0' cellpadding='0' cellspacing='0' width='100%'> <tr><td class='logo' id='c2688'><h1></h1></td></tr></table></td></tr><tr><td class='hero bg_white' id='c2705' valign='middle'><table role='presentation' border='0' cellpadding='0' cellspacing = '0' width='100%'><tr><td id='c2721'><div class='text'><h2>Ronald would like to be your friend on e-Verify</h2></div></td></tr><tr><td id='c2737'><div class='text-author'><img id='c2745' src='https://cdn-icons-png.flaticon.com/512/3048/3048127.png'/><h3 class='name'>Ronald Tuff</h3><span class='position'>CEO, Founder at e-Verify</span><p><a class='btn btn-primary' href='#'>Accept Request</a></p><p><a class='btn-custom' href='#'>Ignore Request</a></p></div></td></tr></table></td></tr></table><table id='c2776' align='center' role='presentation' cellspacing='0' cellpadding='0' border='0' width='100%'><tr><td class='bg_light footer email-section' valign='middle'><table><tr><td id='c2804' valign='top' width='33.333%'><table role='presentation' cellspacing='0' cellpadding='0' border='0' width='100%'><tr><td id='c2820'><h3 class='heading'>About</h3><p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p></td></tr></table></td><td id='c2832' valign='top' width='33.333%'><table role='presentation' cellspacing='0' cellpadding='0' border='0' width='100%'><tr><td id='c2848'><h3 class='heading'>Contact Info</h3><ul><li>203 Fake St.Mountain View, San Francisco, California, USA</li><li>+2 392 3929 210</li></ul></td></tr></table></td><td id='c2868' valign='top' width='33.333%'><table role='presentation' cellspacing='0' cellpadding='0' border='0' width='100%'><tr><td id='c2884'><h3 class='heading'>Useful Links</h3><ul><li><a href='#'>Home</a></li><li><a href='#'>About</a></li><li><a href='#'>Services<a><li><li><a href='#'>Work</a></li></ul></td></tr></table></td></tr></table></td></tr><tr><td class='bg_light' id='c2936'><p>No longer want to receive these email? You can<a id='c2948' href='#'>Unsubscribe here</a></p></td></tr></table></div></center>");
+               
+            }
+            else {
+                editor.setComponents('@Html.Raw(Model.Description)')
+                
+            }
+
+            $("form").submit(function (event) {
+                
+                //event.preventDefault();
+                //console.log(editor.getHtml());
+                $("<input />").attr("type", "hidden")
+                    .attr("name", "Description")
+                    .attr("value", getHtmlGrap())
+                    .appendTo("form");
+
+                return true;
+            });
+
+            $(window).keydown(function (event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                    return false;
+                }
+            });
+
+            var editorArea = Array('Description');
+            $.each(editorArea, function (i, editorArea) {
+                CKEDITOR.replace(editorArea, {});
+                attachEventCKEditor(editorArea);
+            });
+
+            function attachEventCKEditor(instance) {
+                CKEDITOR.instances[instance].on("instanceReady", function (e) {
+                    e.editor.document.on("keyup", function () {
+                        CKEDITOR.instances[instance].updateElement();
+                        $('#' + instance).blur();
+                    });
+                });
+            }
+
+            function getHtmlGrap() {
+                return `<html><head><style>${editor.getCss()}</style></head><body>${editor.getHtml()}</body></html>`;
+            }
+
+        });
+       
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            debugger;
+            $("#myButton").click(function () {
+                debugger;
+                var data = $('.description').val();
+                var regex = /&(nbsp|amp|quot|lt|gt);/g;
+                if ($('.description').val().replace(regex, "").replace('<p>', '').replace('</p>\n', '').trim() == "") {
+                    $('.errLongDescription').html('Please enter email description');
+                    //return false;
+                }
+                else {
+                    $('.errLongDescription').html('');
+                }
+
+            });
+        });
+
+        </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.12.17/grapes.min.js"></script>
+    <script src="https://unpkg.com/grapesjs-preset-newsletter"></script>
+    <script src="https://unpkg.com/grapesjs-blocks-basic@1.0.1/dist/index.js"></script>
+   @* <script src="~/ckeditor/ckeditor.js"></script>*@
+    <script src="~/js/view/templateemail/index.js"></script>
+    <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
+
+}
+
+
+
+

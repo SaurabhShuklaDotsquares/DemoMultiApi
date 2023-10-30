@@ -1,0 +1,22 @@
+﻿@model CurrenciesViewModels
+@using EC.Core
+@{
+    var headerModel = new ModalHeader { Heading = String.Format("{0} Currency", @Model.Id == 0 ? "Select" : "Edit") };
+}
+<div id="frm-modal-add-Currencie">
+    <form method="POST" action="@Url.Action("Create","Currency")" accept-charset="UTF-8">
+        <partial name="_ModalHeader" model="headerModel" />
+        <input type="hidden" asp-for="Id" />
+        <div id="validation-summary" class="alert-danger"></div>
+        <div class="modal-body box-body">
+            <div class="form-group row">
+                <label for="parent">Currency<span class="text-danger">*</span></label>
+                @Html.DropDownListFor(model => model.Iso, Model.GetCurrencyType, "Select Currency..", new { @class = "form-control" })
+                <span asp-validation-for="Iso" class="field-validation-error"> </span>
+            </div>
+        </div>
+        <partial name="_ModalFooter" model="new ModalFooter { }" />
+    </form>
+</div>
+
+

@@ -1,0 +1,35 @@
+﻿@model UserManagerViewModel
+@{
+    var headerModel = new ModalHeader { Heading = " user details" };
+}
+
+<div id="frm-add-edit-users form">
+    <partial name="_ModalHeader" model="headerModel" />
+    <div class="modal-body box-body">
+        <p>Here you can view user details</p>
+        <div id="validation-summary"></div>
+        <div class="form-group row">
+            <table class="table table-hover table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Email</th>
+                        <td>@Model.Email</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Mobile No</th>
+                        <td>@Model.Mobile</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            
+        </div>
+        <div class="pull-right padding-15">
+            <button data-dismiss="modal" class="btn btn-info pull-right mr-lg-3" type="button">Cancel</button>
+        </div>
+    </div>
+</div>

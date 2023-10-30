@@ -1,0 +1,155 @@
+﻿@{
+    @using Microsoft.AspNetCore.Http;
+    var FAVICONLogo = Context.Session.GetString("Main_FAVICON");
+}
+@using Microsoft.Extensions.Configuration;
+@inject IConfiguration configuration;
+<!DOCTYPE html>
+<html>
+<head>
+
+    @*if(@Model.MAIN_FAVICONConfigValue!=null)
+    {
+    <link rel="shortcut icon" href="~/Uploads/@Model.MAIN_FAVICONConfigValue" id="blah" />
+    }*@
+    @(await Component.InvokeAsync("ChildLayoutComponent"))
+    
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewData["Title"]</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+          asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+          crossorigin="anonymous"
+          integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
+          <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"
+          asp-fallback-href="~/lib/alertifyjs/css/alertify.min.css"
+          asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"
+          asp-fallback-href="~/lib/alertifyjs/css/themes/bootstrap.min.css"
+          asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/bootstrap.min.css" crossorigin="anonymous"
+          asp-fallback-href="~/lib/alertifyjs/css/alertify.min.css"
+          asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    @*</environment>*@
+    <!-- Font Awesome -->
+    
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- overlayScrollbars -->
+    <link href="~/lib/admin-lte/css/adminlte.css" rel="stylesheet" />
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/admin/site.css" asp-append-version="true" />
+    <link href="~/css/admin/style.css" rel="stylesheet" />
+    <!-- overlayScrollbars -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.1.0/styles/overlayscrollbars.min.css" rel="stylesheet">
+   @* <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">*@
+   @* <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">*@
+    @*<link href="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.12.17/css/grapes.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/grapesjs-preset-newsletter/dist/grapesjs-preset-newsletter.css" rel="stylesheet">
+    <link href="https://unpkg.com/grapesjs-preset-newsletter/dist/grapesjs-preset-newsletter.css" rel="stylesheet">*@
+    <link href="~/css/select2/select2.css" rel="stylesheet" />
+    <style>
+        div.dataTables_wrapper div.dataTables_processing {
+            background-color: #f0388a;
+            color: white;
+        }
+
+        div.table-responsive table.table {
+            display: none;
+        }
+
+            div.table-responsive table.table.dataTable {
+                display: table !important;
+            }
+
+        .nav-item.menu-open .nav-treeview {
+            background: #29333d !important;
+            /* padding: 10px 15px; */
+        }
+
+        /*-----loading data start-----*/
+.loading-data{background-color: var(--white); border-radius: 15px; box-shadow: 0px 5px 20px 0px rgb(0 173 228 / 15%); color: var(--black); font-size: 1rem; font-weight: 600; padding: 30px; position: fixed; left: 50%; text-align: center; top: 50%; max-width: 500px; width: 90%; -webkit-transform: translateX(-50%) translateY(-50%); -moz-transform: translateX(-50%) translateY(-50%); -ms-transform: translateX(-50%) translateY(-50%); transform: translateX(-50%) translateY(-50%); z-index: 9999;}
+.loading-data p{font-weight: 600;}
+    .loading-data span {
+        color: var(--blue);
+        font-size: 1.125rem;
+    }
+.loading-data img{max-width: 390px;}
+.loading-overlay{background-color: rgba(255,255,255,0.7); content: ""; left: 0; right: 0; height: 100%; position: fixed; top: 0; z-index: 8888;}
+/*-----loading data end-----*/
+/*-----loading data start-----*/
+.loading-common{background-color: var(--white); border-radius: 50%; box-shadow: 0px 5px 20px 0px rgb(0 173 228 / 15%); color: var(--black); font-size: 1.125rem; font-weight: 600; padding: 30px; position: fixed; left: 50%; text-align: center; top: 50%; height: 170px; width: 180px; -webkit-transform: translateX(-50%) translateY(-50%); -moz-transform: translateX(-50%) translateY(-50%); -ms-transform: translateX(-50%) translateY(-50%); transform: translateX(-50%) translateY(-50%); z-index: 9999;}
+    .loading-common p {
+        color: var(--blue);
+        font-weight: 600;
+    }
+/*-----loading data end-----*/
+    </style>
+    @RenderSection("Styles", required: false)
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        @(await Component.InvokeAsync("SidebarComponent"))
+        @await Html.PartialAsync("_Header")
+        @*@await Html.PartialAsync("_SideBar")*@
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="@(CurrentUser.IsAuthenticated && CurrentUser.Role.Equals("Administrator") ? "content-wrapper" : "content-wrapper access-denied")">
+            @RenderBody()
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Page footer. -->
+        @await Html.PartialAsync("_Footer")
+       
+    </div>
+    
+    @*Loader Div*@
+    <div class="loading-common" style="display:none">
+        <p><img src="~/uploads/loader_common (1).gif" /></p>
+    </div>
+    <div class="loading-overlay" style="display:none"></div>
+    @*Loader Div*@
+    <script type="text/javascript">
+        var domain = '@configuration["SiteKeys:Domain"]';
+    </script>
+@*    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>*@
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/fontawesome.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.1.0/styles/overlayscrollbars.min.css" integrity="sha512-SWInhnSfP5LyduITbBbAzzj0LCCw6CBqQIfLMACCnuihNPoTLoOGvT+YVmHsV6ub1VWKrQ2wPhZFmR+c5GZUMw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"
+            asp-fallback-src="~/lib/alertifyjs/alertify.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+            crossorigin="anonymous">
+    </script>
+
+    @*</environment>*@
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="~/lib/admin-lte/js/adminlte.min.js"></script>
+    <script src="~/js/ajaxloader.js"></script>
+    <script src="~/js/global.js" asp-append-version="true"></script>
+    <script src="~/js/select2/select2.js"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

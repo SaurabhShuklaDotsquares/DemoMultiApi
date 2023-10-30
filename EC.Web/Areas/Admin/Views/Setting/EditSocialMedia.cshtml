@@ -1,0 +1,159 @@
+﻿@{
+    ViewData["Title"] = "Social links";
+}
+
+
+@model SettingViewModels
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <partial name="_Notification" />
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title">Social links</h4>
+                @*<small>Here you can update social media detail</small>*@
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","dashboard")">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Social links</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <form method="POST" action="@Url.Action("EditSocialMedia","Setting")" accept-charset="UTF-8" enctype="multipart/form-data">
+            <input name="_token" type="hidden" value="dqtJJhNiC15lCvayVFpiijeBHVO6TI5ubTp5BRqf">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- SELECT2 EXAMPLE -->
+                    <div class="card card-default">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group required ">
+                                            <label>Constant/Slug</label>
+                                            <input class="form-control" readonly="readonly" asp-for="facebookSlug" type="text">
+
+                                            <input class="form-control" name="setting[0][field_type]" type="hidden" value="text">
+                                            <input class="form-control" name="setting[0][manager]" type="hidden" value="social">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group required ">
+                                            <label for="facebook">Config Value <span class="text-danger">*</span></label>
+
+                                            <input class="form-control stop_first_space" id="facebook" placeholder="facebook" maxlength="300" asp-for="facebookConfigValue" type="text">
+
+                                        </div>
+                                    </div>
+                                </div> 
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group required ">
+                                            <label>Constant/Slug</label>
+                                            <input class="form-control" readonly="readonly" asp-for="twitterSlug" type="text">
+
+                                            <input class="form-control" name="setting[1][field_type]" type="hidden" value="text">
+                                            <input class="form-control" name="setting[1][manager]" type="hidden" value="social">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group required ">
+                                            <label for="twitter">Config Value <span class="text-danger">*</span></label>
+
+                                            <input class="form-control stop_first_space" id="twitter" placeholder="twitter" maxlength="300" asp-for="twitterConfigValue" type="text">
+
+                                        </div>
+                                    </div>
+                                </div> 
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group required ">
+                                            <label>Constant/Slug</label>
+                                            <input class="form-control" readonly="readonly" asp-for="LinkdinSlug" type="text">
+
+                                            <input class="form-control" name="setting[2][field_type]" type="hidden" value="text">
+                                            <input class="form-control" name="setting[2][manager]" type="hidden" value="social">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group required ">
+                                            <label for="linkedin">Config Value <span class="text-danger">*</span></label>
+
+                                            <input class="form-control stop_first_space" id="linkedin" placeholder="linkedin" maxlength="300" asp-for="LinkdinConfigValue" type="text">
+
+                                        </div>
+                                    </div>
+                                </div> 
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group required ">
+                                            <label>Constant/Slug</label>
+                                            <input class="form-control" readonly="readonly" asp-for="YoutubeSlug" type="text">
+
+                                            <input class="form-control" name="setting[3][field_type]" type="hidden" value="text">
+                                            <input class="form-control" name="setting[3][manager]" type="hidden" value="social">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group required ">
+                                            <label for="youtube">Config Value <span class="text-danger">*</span></label>
+
+                                            <input class="form-control stop_first_space" id="youtube" placeholder="youtube" maxlength="300" asp-for="YoutubeConfigValue" type="text">
+
+                                        </div>
+                                    </div>
+                                </div> 
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group required ">
+                                            <label>Constant/Slug</label>
+                                            <input class="form-control" readonly="readonly" asp-for="google_plusSlug" type="text" value="google_plus">
+
+                                            <input class="form-control" name="setting[4][field_type]" type="hidden" value="text">
+                                            <input class="form-control" name="setting[4][manager]" type="hidden" value="social">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group required ">
+                                            <label for="google_plus">Config Value <span class="text-danger">*</span></label>
+
+                                            <input class="form-control stop_first_space" id="google_plus" placeholder="google_plus" maxlength="300" asp-for="google_plusConfigValue" type="text">
+
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary"> <i class="fa fa-fw fa-save"></i>Submit</button>
+                            <a href="@Url.Action("Index","dashboard")" class="btn btn-warning btn-flat" title="Back"><i class="fa fa-fw fa-chevron-circle-left"></i> Back</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

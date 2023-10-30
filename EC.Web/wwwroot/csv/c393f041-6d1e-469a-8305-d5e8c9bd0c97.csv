@@ -1,0 +1,3 @@
+Order Id,First Name,Last Name,Mobile,Email,Status,Billing Address,Shipping Address,Shipping Type,Message,Payment Method,Transaction Id,Created_at,Updated_at
+10002-1668428795-ixIwBG,Vinay,gupta,8754896534,vinay.gupta@dotsquares.com,Completed,"123,Jaipur,210301,pinkCity,India","123,Jaipur,210301,pinkCity,India",free,dddd,online,,14-12-2022 00:00:00,29-12-2022 15:44:07
+10003-1668428795-ixIwBH,New,User,8754896534,rakeshkumar.sharma@dotsquares.com,Completed,"123,Jaipur,210301,pinkCity,India","123,Jaipur,210301,pinkCity,India",free,dddd,online,,22-12-2022 00:00:00,27-12-2022 18:57:10

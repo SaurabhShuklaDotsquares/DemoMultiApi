@@ -1,0 +1,403 @@
+﻿@model CouponsViewModels
+
+@*@section styles{
+    <link rel="stylesheet" href="/resources/demos/style.css">
+<link href="~/css/admin/style.css" rel="stylesheet" />
+}*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title" style="margin-left: 10px">Manage Coupon </h4>
+                @*<small>Here you can Add Coupon </small>*@
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","dashboard")">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","Coupons")">Coupon Manager</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Add Coupon</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <form method="POST" action="@Url.Action("Create","Coupons")" accept-charset="UTF-8" id="regForm" enctype="multipart/form-data">
+            <input name="_token" type="hidden" value="">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- SELECT2 EXAMPLE -->
+                    <div class="card card-default">
+
+                        <div class="card-body">
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <div class="form-group required ">
+                                            <label for="title">Code<span class="text-danger">*</span></label>
+                                            <input type="text" placeholder="Enter Code" class="form-control add-code" readonly="readonly" asp-for="Code" maxlength="20"/>
+                                            <span asp-validation-for="Code" class="field-validation-error"> </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-danger code" style="margin-top: 30px;">Generate </button>
+                                    </div>
+                                </div>
+                                <!-- II ROW -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group required ">
+                                            <label for="title">Type<span class="text-danger">*</span></label>
+                                            @Html.DropDownListFor(model=>model.Type,Model.CouponsTypeList,"Select type",new{@class="form-control coupon_type"})
+                                            <span asp-validation-for="Type" class="field-validation-error"> </span>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                         <label for="title">Promo Code Value<span class="text-danger">*</span></label>
+                                            <input type="text" placeholder="Enter the value" asp-for="MaximumValue" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" class="form-control">
+                                            <span asp-validation-for="MaximumValue" class="field-validation-error" class="text-danger" id="errorMaximumValue"></span>
+                                          <br /><span id="error-MaximumValue" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- III -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="">Minimum Purchase Requirement<span class="text-danger">*</span></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="no_purchase_limit" class="form-check-label">No Minimum Purchase</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input asp-for="MaximumUsage" class="form-check-input form form-control no_purchase_limit" id="no_purchase_limit" name="purchase_limit" checked="checked" type="radio" value="1" style="width: 18px;"/>
+                                        <span asp-validation-for="MaximumUsage" class="field-validation-error"> </span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="purchase_limit" class="form-check-label">Minimum Purchase amount</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input asp-for="MaximumUsage" class="form-check-input form form-control purchase_limit" id="purchase_limit" name="purchase_limit" type="radio" value="2" style="width: 18px;" />
+                                        <span asp-validation-for="MaximumUsage" class="field-validation-error"> </span>
+                                    </div>
+                                    @*<div class="col-md-6">                                  
+                                    </div>*@
+                                </div>
+                              @*  <br>*@
+                                <div class="row purchase_limits">
+                                    <div class="col-md-12">
+                                        <label for="title">Enter Minimum amount<span class="text-danger">*</span></label>
+                                        <input placeholder="Enter the minimum amount" type="text" asp-for="Amount" class="form-control" />
+                                        <span asp-validation-for="Amount" class="field-validation-error"> </span>
+                                    </div>
+                                </div>
+                                <br>
+                                <!-- Usage Limit section -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="">Usage Limit<span class="text-danger">*</span></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3"> <label for="no_usage_limit" class="form-check-label">No Usage Limit</label></div>
+                                    <div class="col-md-3">
+                                        <input asp-for="MaximumUsage" class="form-check-input form form-control no_usage_limit" id="no_usage_limit" checked="checked" type="radio" value="1" style="width: 18px;"/>
+                                        <span asp-validation-for="MaximumUsage" class="field-validation-error"> </span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="usage_limit" class="form-check-label">Enter Usage Limit</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input asp-for="MaximumUsage" class="form-check-input form form-control usage_limit" id="usage_limit" type="radio" value="2" style="width: 18px;"/>
+                                        <span asp-validation-for="MaximumUsage" class="field-validation-error"> </span>
+                                    </div>                                   
+                                  
+                                </div>
+                                <br>
+                                <div class="row usage_limits">
+                                    <div class="col-md-12">
+                                        <label>Enter Usage Limit(per customer)<span class="text-danger">*</span></label>
+                                        <input placeholder="Enter the maximum usage" type="text" asp-for="MaximumUsageValue" class="form-control" />
+                                        <span asp-validation-for="MaximumUsageValue" class="field-validation-error"> </span>
+                                    </div>
+                                </div>   
+                                <br />
+                                <!-- Usage Limit Section -->                               
+                                <!-- Date limit section -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="">Date Limits<span class="text-danger">*</span></label>
+                                    </div>
+                                </div>
+                                <br>
+                                <!-- <div class="row date_select"> -->
+                                <div class="row ">
+                                    <div class="col-md-6">
+                                        <label for="title">Start Date Select<span class="text-danger">*</span></label>
+                                        <input asp-for="StartDate" class="form-control" placeholder="Select start date"  type="text"  readonly="readonly"/>
+                                        <span asp-validation-for="StartDate" class="field-validation-error"> </span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="title">End Date Select<span class="text-danger">*</span></label>
+                                        <input asp-for="EndDate" class="form-control" placeholder="Select the end date" type="text" readonly="readonly" />
+                                        <span asp-validation-for="EndDate" class="field-validation-error"> </span>
+                                    </div>
+                                </div>
+                                
+                            </div><!-- /.box-body -->
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary"> <i class="fa fa-fw fa-save"></i>Submit</button>
+                            <a href="@Url.Action("Index","Coupons")" class="btn btn-warning btn-flat" title="Back"><i class="fa fa-fw fa-chevron-circle-left"></i> Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var maximumusagevalue = '@Model.MaximumUsageValue';
+        var amount = '@Model.Amount';
+        let tomorrow = new Date()
+
+        if ($('#Type').val() == 'fixed') {
+            $('#purchase_limit').prop('checked', true)
+            $('#no_purchase_limit').attr("disabled", true)
+            $('#purchase_limit').trigger('click')
+        }
+        else if(amount != 0){
+            $('#purchase_limit').prop('checked', true)
+            $('#purchase_limit').trigger('click')
+        }
+        else {
+            $('#purchase_limit').prop('checked', false)
+            $('#no_purchase_limit').attr("disabled", false)
+            $('#no_purchase_limit').trigger('click')
+        }
+
+        if (maximumusagevalue != 0) {
+            $('#usage_limit').prop('checked', true)
+            $('#usage_limit').trigger('click')
+        }
+        else{
+            $('#no_usage_limit').prop('checked', true)
+            $('#no_usage_limit').trigger('click')
+        }
+        
+        $("#StartDate").datepicker({
+             dateFormat: "dd-M-yy",
+             minDate: 0,
+             onSelect: function (selectedDate) {
+                const tomorrow = new Date(selectedDate)
+                tomorrow.setDate(tomorrow.getDate() + 1)
+                $("#EndDate").datepicker("option", "minDate", tomorrow);
+           }
+        });
+
+        $("#EndDate").datepicker({
+            dateFormat: "dd-M-yy",
+            minDate: 0,
+            //onSelect: function (selectedDate) {
+            //    $("#StartDate").datepicker("option", "minDate", selectedDate);
+            //}
+        });
+      
+    });
+</script>
+<script>
+    $(".code").click(function (event) {
+        event.preventDefault();
+        $('.add-code').val(randPass(5, 3));
+    });
+    function randPass(lettersLength, numbersLength) {
+        var j, x, i;
+        var result = '';
+        var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        var numbers = '0123456789';
+        for (i = 0; i < lettersLength; i++) {
+            result += letters.charAt(Math.floor(Math.random() * letters.length));
+        }
+        for (i = 0; i < numbersLength; i++) {
+            result += numbers.charAt(Math.floor(Math.random() * numbers.length));
+        }
+        result = result.split("");
+        for (i = result.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = result[i];
+            result[i] = result[j];
+            result[j] = x;
+        }
+        result = result.join("");
+        return result
+    }
+</script>
+
+<script>
+    $(".date_select").hide();
+    $("input[id$='date_limit']").click(function () {
+        $(".date_select").show();
+    });
+
+    $("input[id$='no_date_limit']").click(function () {
+        $(".date_select").hide();
+    });
+</script>
+
+<script>
+    $(".purchase_limits").hide();
+
+    $("input[id$='purchase_limit']").click(function () {
+        $(".purchase_limits").show();
+    });
+    $("input[id$='no_purchase_limit']").click(function () {
+        $(".purchase_limits").hide();
+    });
+</script>
+
+<script>
+
+    $(".usage_limits").hide();
+
+    $("input[id$='usage_limit']").click(function () {
+        $(".usage_limits").show();
+    });
+    $("input[id$='no_usage_limit']").click(function () {
+        $(".usage_limits").hide();
+    });
+</script>
+
+<script>
+
+    $(".customer_limit").click(function () {
+        if ($(this).is(':checked')) {
+            $(".customer_limits").show();
+        } else {
+            $(".customer_limits").hide();
+        }
+    });
+    $(".use_limit").click(function () {
+        if ($(this).is(':checked')) {
+            $(".use_limits").show();
+        } else {
+            $(".use_limits").hide();
+        }
+    });
+
+    $(document).off('change', '#Type').on('change', '#Type', function () {
+        if ($(this).val() != null && $(this).val() != undefined){
+            if($(this).val() == 'fixed'){
+                $('#purchase_limit').prop('checked', true)
+                $('#no_purchase_limit').attr("disabled", true)
+                $('#purchase_limit').trigger('click')
+            }
+            else{
+                $('#purchase_limit').prop('checked', false)
+                $('#no_purchase_limit').attr("disabled", false)
+                $('#no_purchase_limit').trigger('click')
+                $('#MaximumValue').val('')
+            }
+        }
+    });
+
+    $(document).off('keyup', '#MaximumValue').on('keyup', '#MaximumValue', function () {
+        var type = $('#Type').val()
+        if ($(this).val() != null && $(this).val() != undefined) {
+            if (type == 'percentage'){
+                if($(this).val() > 100){
+                    $('#MaximumValue').val('')
+                    $('#errorMaximumValue').html('Please enter a value less than or equal to 100.')
+                    $('#errorMaximumValue').css('color','red');
+                }
+                else{
+                    $('#errorMaximumValue').text('')
+                }
+            }
+            else{
+                if (JSON.parse($('#Amount').val()) <= JSON.parse($('#MaximumValue').val())) {
+                    $('#errorMaximumValue').html('Promo code fixed value should be less than minimum purchase amount.')
+                    $('#errorMaximumValue').addClass('text-danger')
+                    $('#error-MaximumValue').html('')
+                }
+                else {
+                    $('#errorMaximumValue').text('')
+                }
+            }
+        }
+    });
+
+    $(document).off('change', '#Amount').on('change', '#Amount', function () {
+        if (JSON.parse($('#Amount').val()) <= JSON.parse($('#MaximumValue').val())) {
+            $('#MaximumValue').val('')
+            $('#errorMaximumValue').html('Promo code fixed value should be less than minimum purchase amount.')
+            $('#errorMaximumValue').addClass('text-danger')
+            $('#error-MaximumValue').html('')
+        }
+        else{
+            $('#errorMaximumValue').text('')
+        }
+    });
+
+    $("form").submit(function () {
+       
+        $('#errorMaximumValue').text('')
+       
+        if ($('#no_purchase_limit').is(':checked')){
+            $('#Amount').val(null)
+        }
+        if ($('#no_usage_limit').is(':checked')) {
+            $('#MaximumUsageValue').val(null)
+        }
+
+        var type = $('#Type').val()
+        
+        if ($('#MaximumValue').val() != null && $('#MaximumValue').val() != undefined) {
+            
+            if (type == 'percentage') {
+                
+                if ($('#MaximumValue').val() > 100) {
+                    $('#MaximumValue').val('')
+                    $('#error-MaximumValue').html('Please enter a value less than or equal to 100.')
+                }
+                else {
+                    $('#errorMaximumValue').text('')
+                }
+            }
+            else {
+                if (JSON.parse($('#Amount').val()) <= JSON.parse($('#MaximumValue').val())) {
+                    $('#MaximumValue').val('')
+                    $('#error-MaximumValue').html('')
+                    $('#error-MaximumValue').html('Promo code fixed value should be less than minimum purchase amount.')
+                }
+                else {
+                    $('#errorMaximumValue').text('')
+                }
+            }
+        }
+
+        return true;
+    });
+
+</script>
+
+
+

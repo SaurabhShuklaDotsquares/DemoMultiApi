@@ -1,0 +1,206 @@
+﻿@model CampaignsViewModels
+
+@section styles{
+    <link href="~/lib/alertifyjs/css/alertify.css" rel="stylesheet" />
+    <link href="~/lib/alertifyjs/css/themes/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/DataTables-1.10.20/css/dataTables.bootstrap4.min.css" />
+}
+<h3><a href="http://www.gyrocode.com/articles/jquery-datatables-how-to-add-a-checkbox-column/"></a></h3>
+<a href="http://www.gyrocode.com/articles/jquery-datatables-how-to-add-a-checkbox-column/"></a>
+<hr>
+
+
+<style>
+    .myclass {
+    }
+</style>
+<div class="page-wrapper">
+        <partial name="_Notification"/>
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title" style="margin-left: 11px;
+    margin-top: 10px;">
+                    Manage Campaign
+                </h4>
+                @*<small>Here you can add campaign</small>*@
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","dashboard")">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Index","Campaigns")">Campaign manager</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Add Campaign</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="frm-example" href="@Url.Action("Create","Campaigns")" method="POST" id="frmCampaign">
+                            <div class="row date_select">
+                                <div class="col-md-6">
+                                    <label for="exampleInputPassword1">Title<span class="text-danger">*</span> </label>
+                                    <input class="form-control" placeholder="Title" maxlength="50" asp-for="Title" type="text">
+                                    <span asp-validation-for="Title" class="field-validation-error titleExist"> </span>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="parent">Template<span class="text-danger">*</span></label>
+                                    @Html.DropDownListFor(model => model.Template, Model.TemplateList, "Select Template..", new { @class = "form-control" })
+                                    <span asp-validation-for="Template" class="field-validation-error"> </span>
+                                </div>
+                            </div>
+
+                            <table id="example" class="table table-bordered table-hover dataTable dtr-inline" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <hr />
+                                        <th><input name="select_all" value="1" id="example-select-all" type="checkbox" /></th>
+                                        <th>Id</th>
+                                        <th width="10%">#</th>                      @*[1]*@
+                                        <th>Name</th>                                @*[2]*@
+                                        <th>Email</th>                               @*[3]*@
+                                        @*<th>#</th>*@
+                                    </tr>
+                                </thead>
+
+                                <tbody></tbody>
+                                <tfoot>
+                                    <tr>
+                                                                 
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <hr>
+                            <button type="submit" class="btn btn-primary"> <i class="fa fa-fw fa-save"></i>Submit</button>
+                            <a href="@Url.Action("Index","Campaigns")" class="btn btn-warning btn-flat" title="Back"><i class="fa fa-fw fa-chevron-circle-left"></i> Back</a>
+                            <input type="hidden" value="@Model.Jsondata" id="Jsondata" name="Jsondata" />
+                            <pre id="example-console"></pre>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+    </div>
+
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('[data-tooltip="tooltip"]').tooltip();
+        });
+    </script>
+    <script src="~/lib/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    @*<script src="~/js/view/admin/campaigns/users.js"></script>*@
+}
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var arremail=new Array();
+        if ($('#Jsondata').val()!="")
+        {
+             arremail = JSON.parse($('#Jsondata').val());
+             arremail=arremail.map(a => a.replace('"', ''))
+        }
+        var table = $('#example').DataTable({
+            'ajax': '/admin/Campaigns/IndexUsers',
+            'columnDefs': [{
+                targets: 0,
+                className: 'dt-body-center',
+                searchable: false,
+                orderable: false,
+                sortable: false,
+                bPaginate: true,
+                pageLength: 50,
+                sPaginationType: "simple_numbers",
+                'render': function (data, type, row, full, meta) {
+                    //return '<input type = "checkbox" name=' + row[3] + '">';
+                    if (arremail.indexOf(row[4]) >= 0)
+                        return '<input type="checkbox" class="checkboxclass" id="rowidCheckbox' + row[1] + '" name=' + row[4] + ' value=' + row[4] + ' checked>';
+                    else
+                        return '<input type ="checkbox" class="checkboxclass" id="rowidCheckbox' + row[1] + '"  name=' + row[4] + '">';
+                }
+            },
+            { "targets": [1], "visible": false },
+            { "targets": [2], "visible": true, "sortable": false, "searchable": false, "orderable": false },
+            { "targets": [3], "sortable": false, "searchable": true },
+            { "targets": [4], "sortable": false, "searchable": true },],
+            'order': [1, 'asc'],
+        });
+
+        // Handle click on "Select all" control
+        $('#example-select-all').on('click', function () {
+            // Check/uncheck all checkboxes in the table
+            var rows = table.rows({ 'search': 'applied' }).nodes();
+            $('input[type="checkbox"]', rows).prop('checked', this.checked);
+        });
+
+        // Handle click on checkbox to set state of "Select all" control
+        $('#example tbody').on('change', 'input[type="checkbox"]', function () {
+            // If checkbox is not checked
+            if (!this.checked) {
+                var el = $('#example-select-all').get(0);
+                // If "Select all" control is checked and has 'indeterminate' property
+                if (el && el.checked && ('indeterminate' in el)) {
+                    // Set visual state of "Select all" control
+                    // as 'indeterminate'
+                    el.indeterminate = true;
+                }
+            }
+        });
+
+        $('#example').on( 'order.dt', function () {
+        // This will show: "Ordering on column 1 (asc)", for example
+     
+        var order = table.order();
+        $('#orderInfo').html( 'Ordering on column '+order[0][0]+' ('+order[0][1]+')' );
+    });
+
+        $('#frm-example').on('submit', function (e) {
+            var params = table.$('input[type=checkbox]:checked,select,textarea').serializeArray()
+            var form = this;
+            var dataItems = [];
+            var rows = table.rows({ 'search': 'applied' }).nodes();
+
+           $(params).each(function (index, data) {
+                 dataItems.push(data.name);
+           });
+
+            if(dataItems.length > 0){
+                 $('#Jsondata').val(JSON.stringify(dataItems))
+            }
+            else{
+                 $('#Jsondata').val(null)
+            }
+        });
+    });
+
+
+    $('#mobile').bind('keypress', function (event) {
+            var regex = new RegExp("^[0-9]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+            }
+        });
+</script>

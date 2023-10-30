@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="3.0.7" />
+    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
+    <PackageReference Include="PredicateBuilder" Version="1.0.0" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.25" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EC.Core\EC.Core.csproj" />
+    <ProjectReference Include="..\EC.Data\EC.Data.csproj" />
+    <ProjectReference Include="..\EC.Repo\EC.Repo.csproj" />
+  </ItemGroup>
+
+</Project>

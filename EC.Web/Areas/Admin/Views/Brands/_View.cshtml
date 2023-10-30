@@ -1,0 +1,68 @@
+﻿@model BrandsViewModel
+@{
+    var headerModel = new ModalHeader { Heading = " Brand" };
+}
+<div id="frm-add-edit-brand-add-view-brand">
+    <partial name="_ModalHeader" model="headerModel" />
+    <div class="modal-body box-body">
+        <p>Here you can view Brand detail</p>
+        <div id="validation-summary"></div>
+        <div class="form-group row">
+            <table class="table table-hover table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">Title</th>
+                        <td>@Model.Title</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Slug</th>
+                        <td>@Model.Slug</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Created</th>
+                        <td>@Model.CreatedAt</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Modified</th>
+                        <td>@Model.UpdatedAt</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Featured</th>
+                        @{
+                            @if(Model.IsFeatured == true){
+                            <td>Active</td>
+                            }
+                            else{
+                            <td>InActive</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <th scope="row">Status</th>
+                        @{
+                            @if(Model.Status == true){
+                            <td>Active</td>
+                            }
+                            else{
+                            <td>InActive</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <th scope="row">Image</th>
+                        <td><img src="~/Uploads/@Model.Image" class="rounded-circle" height="150" width="150" asp-append-version="true" /></td>
+                    </tr>
+                </tbody>
+            </table>
+           
+        </div>
+        <div class="pull-right padding-15">
+            <button data-dismiss="modal" class="btn btn-info pull-right mr-lg-3" type="button">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+

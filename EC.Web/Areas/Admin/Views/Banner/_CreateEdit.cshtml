@@ -1,0 +1,82 @@
+﻿@model BannerViewModels
+@using EC.Core
+@{
+    var headerModel = new ModalHeader { Heading = String.Format("{0} Banner", @Model.Id == 0 ? "Add" : "Edit") };
+}
+
+<div id="frm-add-edit-banner">
+    <form enctype="multipart/form-data" asp-action="CreateEdit" asp-controller="Banner">
+        <partial name="_ModalHeader" model="headerModel" />
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="Image" />
+        <div id="validation-summary" class="alert-danger"></div>
+        <div class="modal-body box-body">
+             <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="DeviceType">Device Type<span class="text-danger">*</span></label>
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(model => model.DeviceType, Model.GetDeviceType, new { @class = "form-control" })
+                    <span asp-validation-for="DeviceType" class="field-validation-error"> </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Title">Title<span class="text-danger">*</span></label>
+                <div class="col-sm-10">
+                    <input type="text" title="Enter the Title." asp-for="Title" class="form-control"/>
+                    <span asp-validation-for="Title" class="field-validation-error titleExist"> </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Subtitle">Sub title<span class="text-danger">*</span></label>
+                <div class="col-sm-10">
+                    <input type="text" title="Enter the Sub Title." asp-for="Subtitle" class="form-control" />
+                    <span asp-validation-for="Subtitle" class="field-validation-error"> </span>
+                </div>
+            </div>                                              
+             <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Type">Type<span class="text-danger">*</span></label>
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(model => model.Type, Model.GetPositionType, new { @class = "form-control" })
+                    <span asp-validation-for="Type" class="field-validation-error"> </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Status" class="switchBox switch-small"></label>
+                <div class="col-sm-10">
+                    <label class="switch">
+                        <input type="checkbox" asp-for="Status" class="form-checkbox" />
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>           
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="BannerPicture">Image<span class="text-danger">*</span></label>
+                <div class="col-sm-10">
+                    <input asp-for="BannerPicture" id="yourElem" accept="image/x-png,image/gif,image/jpeg" placeholder="Only .JPEG,.JPG,.PNG Image Foramte Allow" class="custom-file-input" >
+                    <label class="custom-file-label" for="customFile">Choose Image</label>
+                    <span asp-validation-for="Image" class="field-validation-error"> </span>
+                    <p id="lblError" class="field-validation-error"></p>
+                </div>
+            </div>
+            @if (Model.Id > 0)
+            {
+                <img src="~/Uploads/@Model.Image" class="rounded-circle" height="100" width="100" asp-append-version="true" id="view_logoUrlfile" />
+                <span asp-validation-for="Image" class="field-validation-error"> </span>
+            }
+            else
+            {
+                <img class="rounded-circle" height="100" width="100" asp-append-version="true" id="view_logoUrlfile" style="display:none;" />
+                <span asp-validation-for="Image" class="field-validation-error"> </span>
+            }
+        </div>
+        <partial name="_ModalFooter" model="new ModalFooter { }" />
+    </form>
+</div>
+
+<script src="~/js/global.js"></script>
+<script>    
+    $("#yourElem").change(function () {
+        //Global.ValidateImage(this, 'yourElem', 'view_logoUrlfile', 'lblError');
+        Global.ValidateImageBySize(this, 'yourElem', 50, 500, 'lblError')
+    });
+</script>
+

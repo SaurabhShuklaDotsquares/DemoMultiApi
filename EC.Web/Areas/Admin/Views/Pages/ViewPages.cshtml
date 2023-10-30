@@ -1,0 +1,82 @@
+﻿@model PagesViewModels
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>CMS Manager</h1>
+                <h5>Here you can view Cms Page detail</h5>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-action="index" asp-controller="dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a asp-action="index" asp-controller="Pages">Manage Pages</a></li>
+                    <li class="breadcrumb-item active">Detail</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+    <div class="box">
+
+        <div class="box-body">
+            <table class="table table-hover table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">Title</th>
+                        <td>@Model.Title</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sub  Title</th>
+                        <td>@Model.SubTitle</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Slug</th>
+                        <td>@Model.Slug</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Meta Title</th>
+                        <td>@Model.MetaTitle</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Meta Keywords</th>
+                        <td>@Model.MetaKeyword</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Meta Description</th>
+                        <td>@Model.MetaDescription</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Status</th>
+                        <td>@Model.Status</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Description</th>
+                        <td class="editor-content">@Html.Raw(Model.Description)</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Created</th>
+                        <td>@Model.CreatedAt</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Modified</th>
+                        <td>@Model.UpdatedAt</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="box-header">
+                <a href="@Url.Action("Index", "Pages")" class="btn btn-info pull-right mr-lg-3" title="Cancel"><i class="fa fa-fw fa-chevron-circle-left"></i> Back</a>
+            </div><br />
+        </div>
+    </div>
+</section>

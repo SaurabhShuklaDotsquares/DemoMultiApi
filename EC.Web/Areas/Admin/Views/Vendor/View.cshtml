@@ -1,0 +1,138 @@
+﻿@model ProductsViewModel
+@{
+    var headerModel = new ModalHeader { Heading = " Products" };
+}
+
+<style>
+    .panel {
+        width: 100%;
+        padding: 10px;
+        margin: 0;
+        background: #b1b1b1;
+    }
+
+    th {
+        width: 25%;
+    }
+</style>
+
+<div id="frm-add-edit-Products-add-view-Products1">
+    @*  <partial name="_ModalHeader" model="headerModel" />*@
+    <div class="modal-body box-body">
+        <p>Here you can view Products detail</p>
+        <div id="validation-summary"></div>
+        <div class="form-group row">
+
+            <div class="col-md-12">
+                <div class="panel">
+                    <h3>General Information</h3>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <table class="table table-hover table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Category</th>
+                            <td><span class="@(string.IsNullOrEmpty(@Model.ParentCategory) ? "hidden" : "")">@Model.ParentCategory <i class="fa fa-arrow-right"></i> </span>@Model.Category</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Brand</th>
+                            <td>@Model.BrandNames</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Title</th>
+                            <td>@Model.Title</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Stock</th>
+                            <td>@Model.Stock</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Discounted Price</th>
+                            <td>@Model.DiscountedPrice</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Price</th>
+                            <td>@Model.Price</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td class="text-justify">@Html.Raw(Model.LongDescription)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            @if (Model.ProductAttributeDetails_list.Count > 0)
+            {
+                <div class="col-md-12">
+                    <div class="panel">
+                        <h3>Extra Details</h3>
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sr.No</th>
+                                <th>Variant</th>
+                                <th>Regular price</th>
+                                <th>Discounted Price</th>
+                                <th>Stock</th>
+                                <th>Image</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int a = 0;
+                                foreach (var item in Model.ProductAttributeDetails_list)
+                                {
+                                    <tr>
+                                        <td>@a</td>
+                                        <td>@item.VariantText</td>
+                                        <td>@item.RegularPrice</td>
+                                        <td>@item.Price</td>
+                                        <td>@item.Stock</td>
+                                        @if (Model.AttributeViewImage[a].ImageName != null)
+                                        {
+                                            <td><img src="~/Uploads/@Model.AttributeViewImage.Where(x=>x.ProductAttributeDetailId==item.Id).FirstOrDefault().ImageName" class="rounded-circle" style="height:50px; width:50px;" asp-append-version="true" /></td>
+                                        }
+                                    </tr>
+                                    a++;
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            @if (Model.ProductMainDetails_list != null)
+            {
+                <div class="col-md-12">
+                    <div class="panel">
+                        <h3>Product Images</h3>
+                    </div>
+                </div>
+                <div class="col-md-12">
+
+                    @for (int i = 0; i < Model.ProductMainDetails_list.Count; i++)
+                    {
+                        <div class="float-left @(i > 0 ? "ml-5" : "")">
+                            <img src="~/Uploads/@Model.ProductMainDetails_list[i].Image_Main" height="100" width="100" asp-append-version="true" />
+                        </div>
+                    }
+                </div>
+            }
+            <div class="box-header" style="background-color: royalblue;margin-top: 55px;">
+                <a href="@Url.Action("Vedorproductdata","Vendor")" class="btn btn-default pull-left ml-3" title="Back"><i class="fa fa-fw fa-chevron-circle-left"></i> Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
